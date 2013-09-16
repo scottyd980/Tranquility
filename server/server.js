@@ -1,7 +1,7 @@
 var PORT = 3000,
   SSL_PORT = 3443,
   API_URL = '/api',
-  CONNECTION_STRING = 'mongodb://localhost/geekingreen'; // mongodb://user:pass@host:port/db?options...
+  CONNECTION_STRING = 'mongodb://localhost/tranquility'; // mongodb://user:pass@host:port/db?options...
 
 var fs = require('fs');
 var http = require('http');
@@ -16,7 +16,7 @@ var ssl_options = false;
 // };
 
 mongoose.connect(CONNECTION_STRING);
-var db = mongoose.connect
+var db = mongoose.connect;
 
   function emberfyModel(app, model, modelName, modelPlural) {
     app.get(API_URL + '/' + modelPlural, function(req, res) {
@@ -102,6 +102,29 @@ app.configure(function() {
 // All options return the same thing
 app.options('*', function(req, res) {
   res.send(200);
+});
+
+app.get('/auth.json', function(req, res) {
+
+  var body = req.query,
+      username = body.username,
+      password = body.password;
+
+      console.log(req.query);
+
+  if (username == 'ember' && password == 'casts') {
+    // Generate and save the token (forgotten upon server restart).
+    currentToken = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    res.send({
+      success: true,
+      token: currentToken
+    });
+  } else {
+    res.send({
+      success: false,
+      message: 'Invalid username/password'
+    });
+  }
 });
 
 /*
