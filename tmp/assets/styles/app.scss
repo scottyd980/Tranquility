@@ -1,6 +1,15 @@
 body {
 }
 
+.navbar-brand {
+	padding: 0px 15px;
+	line-height: 50px;
+
+	img {
+		padding-bottom: 8px;
+	}
+}
+
 #hero {
 	background: url('../img/herobg.png') no-repeat 50% 50%;
 	background-size: cover;
