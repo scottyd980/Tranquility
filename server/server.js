@@ -8,6 +8,7 @@ var http = require('http');
 var https = require('https');
 var mongoose = require('mongoose');
 var express = require('express');
+var user = require('./models/user')(mongoose);
 
 var ssl_options = false;
 // var ssl_options = {
@@ -110,27 +111,53 @@ app.get('/auth.json', function(req, res) {
       username = body.username,
       password = body.password;
 
-      console.log(req.query);
+      //console.log(user);
 
-  if (username == 'ember' && password == 'casts') {
-    // Generate and save the token (forgotten upon server restart).
-    currentToken = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    res.send({
-      success: true,
-      token: currentToken
-    });
-  } else {
-    res.send({
-      success: false,
-      message: 'Invalid username/password'
-    });
-  }
+  user.findOne({ 'username' : username }, 'email password', function(err, person){
+    if(err) {
+      console.log(err);
+    } else if(person === null) {
+      res.send({
+        success: false,
+        message: 'Invalid username/password'
+      });
+    } else {
+      console.log(person);
+      if(person.password = password) {
+        currentToken = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        res.send({
+          success: true,
+          token: currentToken
+        });
+      } else {
+        res.send({
+          success: false,
+          message: 'Invalid username/password'
+        });
+      }
+    }
+  });
+
+  // if (username == 'ember' && password == 'casts') {
+  //   // Generate and save the token (forgotten upon server restart).
+  //   currentToken = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  //   res.send({
+  //     success: true,
+  //     token: currentToken
+  //   });
+  // } else {
+  //   res.send({
+  //     success: false,
+  //     message: 'Invalid username/password'
+  //   });
+  // }
 });
 
 /*
   ADD YOUR MODELS HERE
 */
 emberfyModel(app, require('./models/message')(mongoose), 'message', 'messages');
+
 
 http.createServer(app).listen(PORT);
 if (ssl_options) {
