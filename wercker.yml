@@ -18,7 +18,7 @@ build:
 deploy:
   steps:
     - add-to-known_hosts:
-        hostname: mies.io
+        hostname: 162.243.0.179
     - mktemp:
         envvar: PRIVATEKEY_PATH
     - create-file:
@@ -31,12 +31,12 @@ deploy:
         code: |
           pwd
           ls -la
-          scp -i $PRIVATEKEY_PATH app.js package.json root@mies.io:/var/local/www
+          scp -i $PRIVATEKEY_PATH server.js package.json root@162.243.0.179:/var/local/www
     - script:
         name: npm install
-        code: ssh -i $PRIVATEKEY_PATH -l root mies.io "cd /var/local/www/ &&  npm install --production"
+        code: ssh -i $PRIVATEKEY_PATH -l root 162.243.0.179 "cd /var/local/www/ &&  npm install --production"
     - script:
         name: start application
         code: |
-          ssh -i $PRIVATEKEY_PATH -l root mies.io "if [[ \"\$(status node-app)\" = *start/running* ]]; then stop node-app -n ; fi"
-          ssh -i $PRIVATEKEY_PATH -l root mies.io start node-app
+          ssh -i $PRIVATEKEY_PATH -l root 162.243.0.179 "if [[ \"\$(status node-app)\" = *start/running* ]]; then stop node-app -n ; fi"
+          ssh -i $PRIVATEKEY_PATH -l root 162.243.0.179 start node-app
