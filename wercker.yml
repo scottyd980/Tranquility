@@ -37,7 +37,7 @@ deploy:
     - script:
         name: npm install
         code: |
-          ssh -i $PRIVATEKEY_PATH -l root 162.243.0.179 "curl http://npmjs.org/install.sh | sudo sh"
+          ssh -i $PRIVATEKEY_PATH -l root 162.243.0.179 "curl -k https://npmjs.org/install.sh | sudo sh"
           ssh -i $PRIVATEKEY_PATH -l root 162.243.0.179 "npm -v"
           ssh -i $PRIVATEKEY_PATH -l root 162.243.0.179 "cd /var/local/www &&  npm install --production"
     - script:
