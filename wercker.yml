@@ -31,6 +31,7 @@ deploy:
         code: |
           pwd
           ls -la
+          mkdir /var/local/www
           scp -i $PRIVATEKEY_PATH server.js package.json root@162.243.0.179:/var/local/www
     - script:
         name: npm install
