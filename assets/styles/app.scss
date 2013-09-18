@@ -1,4 +1,6 @@
 body {
+	padding-top: 80px;
+	background: url('../img/squairy_light.png') repeat;
 }
 
 .navbar-brand {
@@ -17,4 +19,16 @@ body {
 	-webkit-background-size: cover;
 	height: 400px;
 	width: 100%;
+}
+
+.block {
+	background-color: #fff;
+	border: 1px solid #CCC;
+	border-radius: 4px 4px 4px 4px;
+	float: none;
+	margin: 0px auto 0;
+	padding-bottom: 10px;
+	box-shadow: 0px 0px 10px 0px #DDD;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
 }
