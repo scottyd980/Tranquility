@@ -31,11 +31,10 @@ deploy:
         code: |
           pwd
           ls -la
-          sudo mkdir -p /var/local/www
-          scp -i $PRIVATEKEY_PATH server.js package.json root@162.243.0.179:/var/local/www
+          scp -i $PRIVATEKEY_PATH server.js package.json root@162.243.0.179:/
     - script:
         name: npm install
-        code: ssh -i $PRIVATEKEY_PATH -l root 162.243.0.179 "cd /var/local/www/ &&  npm install --production"
+        code: ssh -i $PRIVATEKEY_PATH -l root 162.243.0.179 "cd / &&  npm install --production"
     - script:
         name: start application
         code: |
