@@ -141,6 +141,21 @@ Tranquility.TodosRoute = Ember.Route.extend({
 
 (function() {
 
+Tranquility.AuthLoginController = Ember.Controller.extend({
+	actions: {
+		login: function() {
+			var data = this.getProperties('username', 'password');
+			Ember.$.post('http://localhost:3000/login.json', data).then(function(response) {
+				alert('got response');
+			});
+		}
+	}
+});
+
+})();
+
+(function() {
+
 Tranquility.AboutController = Ember.Controller.extend({
   someText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque libero massa, mollis.'
 });

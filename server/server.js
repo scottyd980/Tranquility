@@ -106,25 +106,28 @@ app.options('*', function(req, res) {
   res.send(200);
 });
 
-app.get('/login.json', function(req, res) {
+app.post('/login.json', function(req, res) {
 
-  var body = req.query,
+  var body = req.body,
       username = body.username,
       password = body.password;
 
-      //console.log(user);
+      console.log(body);
+      console.log('~~~~~~~~~~~~~~~~~~~~~~~~');
+      console.log(req);
   if( username != null && password != null ) {
     user.findOne({ 'username' : username }, 'email password', function(err, person){
       if(err) {
-        console.log(err);
+        res.send({
+          success: false,
+          message: 'An unexpected error occurred.'
+        });
       } else if(person === null) {
         res.send({
           success: false,
-          message: 'Invalid username/password'
+          message: 'Invalid username/password.'
         });
       } else {
-        console.log(password);
-        console.log(person.password);
         bcrypt.compare(password, person.password, function(err, auth) {
           if( err ) {
             console.log(err);
@@ -162,11 +165,17 @@ app.get('/signup.json', function(req, res) {
     bcrypt.genSalt(10, function(err, salt) {
       bcrypt.hash(password, salt, function(err, hash) {
         if( err ) {
-          console.log(err);
+          res.send({
+            success: false,
+            message: 'An unexpected error occurred.'
+          });
         } else {
           user.create({username: username, email: email, password: hash}, function(err, createdUser) {
             if( err ) {
-              console.log(err);
+              res.send({
+                success: false,
+                message: 'An unexpected error occurred.'
+              });
             } else {
               var currentToken = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
               res.send({
@@ -181,11 +190,13 @@ app.get('/signup.json', function(req, res) {
   } else {
     res.send({
       success: false,
-      message: 'Invalid user'
+      message: 'Invalid user.'
     });
   }
 
 });
+
+app.use(express.static(__dirname + '/../dist/'));
 
 /*
   ADD YOUR MODELS HERE

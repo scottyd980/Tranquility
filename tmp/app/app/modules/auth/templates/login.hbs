@@ -1,0 +1,18 @@
+<div class="block">
+	<div class="title">
+		<h3>Login <small>Enter your credentials to access your account</small></h3>
+	</div>
+	<div class="body">
+		<form {{action login on="submit"}} role="form">
+			<div class="form-group">
+				<label for="username">Username / email address</label>
+				{{input value=username type="text" id="username" class="form-control" }}
+			</div>
+			<div class="form-group">
+				<label for="password">Password</label>
+				{{input value=password type="password" id="password" class="form-control" }}
+			</div>
+			{{input class="btn btn-primary" type="submit" value="Login"}}
+		</form>
+	</div>
+</div>
