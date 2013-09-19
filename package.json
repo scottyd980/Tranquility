@@ -6,7 +6,8 @@
     "orm": "~2.0.11",
     "mysql": "~2.0.0-alpha8",
     "mongoose": "~3.6.11",
-    "bcrypt": "~0.7.7"
+    "bcrypt": "~0.7.7",
+    "jwt-simple": "~0.1.0"
   },
   "devDependencies": {
     "grunt": "~0.4.1",

@@ -10,6 +10,9 @@ var mongoose = require('mongoose');
 var express = require('express');
 var bcrypt = require('bcrypt');
 var user = require('./models/user')(mongoose);
+var jwt = require('jwt-simple');
+
+var tokenSecret = "KXlZ00lIt6W9RsA9L72Wj13XeLjqjMIu";
 
 var ssl_options = false;
 // var ssl_options = {
@@ -106,15 +109,18 @@ app.options('*', function(req, res) {
   res.send(200);
 });
 
+function authorize(req, res, next) {
+  //var decoded = jwt.decode(req.headers.token, tokenSecret);
+  //console.log(decoded);
+  next();
+}
+
 app.post('/login.json', function(req, res) {
 
   var body = req.body,
       username = body.username,
       password = body.password;
 
-      console.log(body);
-      console.log('~~~~~~~~~~~~~~~~~~~~~~~~');
-      console.log(req);
   if( username != null && password != null ) {
     user.findOne({ 'username' : username }, 'email password', function(err, person){
       if(err) {
@@ -132,7 +138,8 @@ app.post('/login.json', function(req, res) {
           if( err ) {
             console.log(err);
           } else if(auth === true) {
-            var currentToken = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            var tokenSecret = 'KXlZ00lIt6W9RsA9L72Wj13XeLjqjMIu';
+            var currentToken = jwt.encode({username: username}, tokenSecret);
             res.send({
               success: true,
               token: currentToken
@@ -154,7 +161,7 @@ app.post('/login.json', function(req, res) {
   }
 });
 
-app.get('/signup.json', function(req, res) {
+app.get('/signup.json', authorize, function(req, res) {
 
   var body = req.query,
       username = body.username,
