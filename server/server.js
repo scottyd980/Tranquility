@@ -8,6 +8,7 @@ var http = require('http');
 var https = require('https');
 var mongoose = require('mongoose');
 var express = require('express');
+var bcrypt = require('bcrypt');
 var user = require('./models/user')(mongoose);
 
 var ssl_options = false;
@@ -105,52 +106,85 @@ app.options('*', function(req, res) {
   res.send(200);
 });
 
-app.get('/auth.json', function(req, res) {
+app.get('/login.json', function(req, res) {
 
   var body = req.query,
       username = body.username,
       password = body.password;
 
       //console.log(user);
-
-  user.findOne({ 'username' : username }, 'email password', function(err, person){
-    if(err) {
-      console.log(err);
-    } else if(person === null) {
-      res.send({
-        success: false,
-        message: 'Invalid username/password'
-      });
-    } else {
-      console.log(person);
-      if(person.password = password) {
-        currentToken = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        res.send({
-          success: true,
-          token: currentToken
-        });
-      } else {
+  if( username != null && password != null ) {
+    user.findOne({ 'username' : username }, 'email password', function(err, person){
+      if(err) {
+        console.log(err);
+      } else if(person === null) {
         res.send({
           success: false,
           message: 'Invalid username/password'
         });
+      } else {
+        console.log(password);
+        console.log(person.password);
+        bcrypt.compare(password, person.password, function(err, auth) {
+          if( err ) {
+            console.log(err);
+          } else if(auth === true) {
+            var currentToken = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            res.send({
+              success: true,
+              token: currentToken
+            });
+          } else {
+            res.send({
+              success: false,
+              message: 'Invalid username/password.'
+            });
+          }
+        });
       }
-    }
-  });
+    });
+  } else {
+    res.send({
+      success: false,
+      message: 'Username/password are required.'
+    })
+  }
+});
 
-  // if (username == 'ember' && password == 'casts') {
-  //   // Generate and save the token (forgotten upon server restart).
-  //   currentToken = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  //   res.send({
-  //     success: true,
-  //     token: currentToken
-  //   });
-  // } else {
-  //   res.send({
-  //     success: false,
-  //     message: 'Invalid username/password'
-  //   });
-  // }
+app.get('/signup.json', function(req, res) {
+
+  var body = req.query,
+      username = body.username,
+      email = body.email,
+      password = body.password;
+
+  if ( username != null && email != null && password != null ) {
+    bcrypt.genSalt(10, function(err, salt) {
+      bcrypt.hash(password, salt, function(err, hash) {
+        if( err ) {
+          console.log(err);
+        } else {
+          user.create({username: username, email: email, password: hash}, function(err, createdUser) {
+            if( err ) {
+              console.log(err);
+            } else {
+              var currentToken = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+              res.send({
+                success: true,
+                token: currentToken
+              });
+            }
+          });
+        }
+      });
+    });
+  } else {
+    res.send({
+      success: false,
+      message: 'Invalid user'
+    });
+  }
+
 });
 
 /*

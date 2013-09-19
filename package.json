@@ -5,7 +5,8 @@
     "express": "~3.2.2",
     "orm": "~2.0.11",
     "mysql": "~2.0.0-alpha8",
-    "mongoose": "~3.6.11"
+    "mongoose": "~3.6.11",
+    "bcrypt": "~0.7.7"
   },
   "devDependencies": {
     "grunt": "~0.4.1",

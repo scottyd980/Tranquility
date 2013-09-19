@@ -1,6 +1,9 @@
 Tranquility.Router.map(function() {
   this.route('about', { path: '/about' });
-  this.route('contact', { path: '/contact_me' });
+  this.resource('auth', function() {
+  	this.route('login', { path: '/login' });
+  	this.route('signup', { path: '/signup' });
+  });
 
   this.resource('todos', function () {
     this.route('index', { path: '/' });

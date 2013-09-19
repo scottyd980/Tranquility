@@ -14,19 +14,23 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav">
-        <li><a href="#">About</a></li>
+        <li>{{#link-to 'about'}}About{{/link-to}}</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Sign Up</a></li>
-        <li><a href="#">Login</a></li>
+        <li>{{#link-to 'auth.signup'}}Sign Up{{/link-to}}</li>
+        <li>{{#link-to 'auth.login'}}Login{{/link-to}}</li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div>
 </nav>
 <div class="container">
   <div class="row">
-    <div class="col-lg-12">
-      {{outlet}}
+    <div class="col-lg-12 block">
+      <div class="row">
+        <div class="col-lg-12">
+          {{outlet}}
+        </div>
+      </div>
     </div>
   </div>
 </div>
