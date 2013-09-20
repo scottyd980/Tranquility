@@ -15,14 +15,13 @@ Tranquility.AuthenticatedRoute = Ember.Route.extend({
 		var loginController = this.controllerFor('auth.login');
 		loginController.set('attemptedTransition', transition);
 		this.transitionTo('auth.login');
-		loginController.set('errorMessage', 'You must login first to access that page.');
   	},
 	actions: {
 	    error: function(reason, transition) {
 			if (reason.status === 401) {
-			this.redirectToLogin(transition);
+				this.redirectToLogin(transition);
 			} else {
-			alert('Something went wrong');
+				this.redirectToLogin(transition);
 			}
 	    }
   	}
@@ -148,7 +147,9 @@ Tranquility.AuthLoginRoute = Ember.Route.extend({
 
 Tranquility.AboutRoute = Tranquility.AuthenticatedRoute.extend({
 	model: function() {
-		return $.getJSON('/about.json');
+		var loginController = this.controllerFor('auth.login'),
+			token = loginController.get('token');
+		return $.getJSON('/about.json?token=' + token);
 	}
 });
 
