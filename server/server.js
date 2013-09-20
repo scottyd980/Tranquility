@@ -109,11 +109,21 @@ app.options('*', function(req, res) {
   res.send(200);
 });
 
+function NotAuthorized(msg) {
+  this.name = 'NotAuthorized';
+  this.msg = msg;
+  Error.call(this, msg);
+  Error.captureStackTrace(this, arguments.callee);
+}
+
 function authorize(req, res, next) {
-  //var userToken = req.body.token || req.param('token') || req.headers.token;
-  //var decoded = jwt.decode(userToken, tokenSecret);
-  //console.log(decoded);
-  next();
+  var userToken = req.body.token || req.param('token') || req.headers.token;
+  if( userToken === undefined ) {
+    return next(new NotAuthorized('You must be logged in to access this content.'));
+  } else {
+    var decoded = jwt.decode(userToken, tokenSecret);
+    next();
+  }
 }
 
 app.post('/login.json', function(req, res) {
@@ -204,9 +214,19 @@ app.get('/signup.json', authorize, function(req, res) {
 
 });
 
-app.get('/about.json', function(req, res) {
-  res.send(401, { error: 'Invalid token.' });
-  return false;
+app.get('/about.json', authorize, function(req, res) {
+  res.send({
+    success: true
+  });
+});
+
+app.use( function( err, req, res, next ) {
+  if( err instanceof NotAuthorized) {
+    res.send(401, { success: false, error: err.msg });
+    return false;
+  } else {
+    next(err);
+  }
 });
 
 app.use(express.static(__dirname + '/../dist/'));
