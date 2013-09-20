@@ -3,6 +3,9 @@
 		<h3>Login <small>Enter your credentials to access your account</small></h3>
 	</div>
 	<div class="body">
+		{{#if errorMessage}}
+			<div class="alert alert-danger">{{errorMessage}}</div>
+		{{/if}}
 		<form {{action login on="submit"}} role="form">
 			<div class="form-group">
 				<label for="username">Username / email address</label>

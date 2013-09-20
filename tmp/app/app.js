@@ -10,6 +10,24 @@ window.Tranquility = Ember.Application.create({
     debugMode: true
 });
 
+Tranquility.AuthenticatedRoute = Ember.Route.extend({
+	redirectToLogin: function(transition) {
+		var loginController = this.controllerFor('auth.login');
+		loginController.set('attemptedTransition', transition);
+		this.transitionTo('auth.login');
+		loginController.set('errorMessage', 'You must login first to access that page.');
+  	},
+	actions: {
+	    error: function(reason, transition) {
+			if (reason.status === 401) {
+			this.redirectToLogin(transition);
+			} else {
+			alert('Something went wrong');
+			}
+	    }
+  	}
+});
+
 // Load mixins and components before anything else
 
 
@@ -128,6 +146,16 @@ Tranquility.AuthLoginRoute = Ember.Route.extend({
 
 (function() {
 
+Tranquility.AboutRoute = Tranquility.AuthenticatedRoute.extend({
+	model: function() {
+		return $.getJSON('/about.json');
+	}
+});
+
+})();
+
+(function() {
+
 Tranquility.ApplicationRoute = Ember.Route.extend({
 
   model: function(params) { 
@@ -163,6 +191,8 @@ Tranquility.AuthLoginController = Ember.Controller.extend({
 
 				if( response.success ) {
 					self.set('token', response.token);
+				} else {
+					self.set('errorMessage', response.message);
 				}
 
 			});

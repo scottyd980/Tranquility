@@ -10,6 +10,8 @@ Tranquility.AuthLoginController = Ember.Controller.extend({
 
 				if( response.success ) {
 					self.set('token', response.token);
+				} else {
+					self.set('errorMessage', response.message);
 				}
 
 			});

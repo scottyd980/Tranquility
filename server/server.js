@@ -110,7 +110,8 @@ app.options('*', function(req, res) {
 });
 
 function authorize(req, res, next) {
-  //var decoded = jwt.decode(req.headers.token, tokenSecret);
+  //var userToken = req.body.token || req.param('token') || req.headers.token;
+  //var decoded = jwt.decode(userToken, tokenSecret);
   //console.log(decoded);
   next();
 }
@@ -201,6 +202,11 @@ app.get('/signup.json', authorize, function(req, res) {
     });
   }
 
+});
+
+app.get('/about.json', function(req, res) {
+  res.send(401, { error: 'Invalid token.' });
+  return false;
 });
 
 app.use(express.static(__dirname + '/../dist/'));
