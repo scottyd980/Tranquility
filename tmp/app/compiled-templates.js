@@ -147,6 +147,77 @@ function program1(depth0,data) {
   
 });
 
+Ember.TEMPLATES["auth/signup"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, hashTypes, hashContexts, options, escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = '', hashTypes, hashContexts;
+  data.buffer.push("\n			<div class=\"alert alert-danger\">");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "errorMessage", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("</div>\n		");
+  return buffer;
+  }
+
+  data.buffer.push("<div class=\"block\">\n	<div class=\"title\">\n		<h3>Sign Up <small>Create a new account to start tracking issues now</small></h3>\n	</div>\n	<div class=\"body\">\n		");
+  hashTypes = {};
+  hashContexts = {};
+  stack1 = helpers['if'].call(depth0, "errorMessage", {hash:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n		<form ");
+  hashContexts = {'on': depth0};
+  hashTypes = {'on': "STRING"};
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "signup", {hash:{
+    'on': ("submit")
+  },contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(" role=\"form\">\n			<div class=\"form-group\">\n				<label for=\"username\">Username</label>\n				");
+  hashContexts = {'value': depth0,'type': depth0,'id': depth0,'class': depth0};
+  hashTypes = {'value': "ID",'type': "STRING",'id': "STRING",'class': "STRING"};
+  options = {hash:{
+    'value': ("username"),
+    'type': ("text"),
+    'id': ("username"),
+    'class': ("form-control")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.input || depth0.input),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
+  data.buffer.push("\n			</div>\n			<div class=\"form-group\">\n				<label for=\"email\">Email Address</label>\n				");
+  hashContexts = {'value': depth0,'type': depth0,'id': depth0,'class': depth0};
+  hashTypes = {'value': "ID",'type': "STRING",'id': "STRING",'class': "STRING"};
+  options = {hash:{
+    'value': ("email"),
+    'type': ("text"),
+    'id': ("email"),
+    'class': ("form-control")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.input || depth0.input),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
+  data.buffer.push("\n			</div>\n			<div class=\"form-group\">\n				<label for=\"password\">Password</label>\n				");
+  hashContexts = {'value': depth0,'type': depth0,'id': depth0,'class': depth0};
+  hashTypes = {'value': "ID",'type': "STRING",'id': "STRING",'class': "STRING"};
+  options = {hash:{
+    'value': ("password"),
+    'type': ("password"),
+    'id': ("password"),
+    'class': ("form-control")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.input || depth0.input),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
+  data.buffer.push("\n			</div>\n			");
+  hashContexts = {'class': depth0,'type': depth0,'value': depth0};
+  hashTypes = {'class': "STRING",'type': "STRING",'value': "STRING"};
+  options = {hash:{
+    'class': ("btn btn-primary"),
+    'type': ("submit"),
+    'value': ("Sign Up")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.input || depth0.input),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
+  data.buffer.push("\n		</form>\n	</div>\n</div>");
+  return buffer;
+  
+});
+
 Ember.TEMPLATES["_link"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
