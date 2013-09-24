@@ -1,4 +1,10 @@
 Tranquility.AuthLoginController = Ember.Controller.extend({
+	token: localStorage.token,
+
+	tokenChanged: function() {
+		localStorage.token = this.get('token');
+	}.observes('token'),
+
 	actions: {
 		login: function() {
 			var data = this.getProperties('username', 'password'),
@@ -17,6 +23,7 @@ Tranquility.AuthLoginController = Ember.Controller.extend({
 			});
 		}
 	},
+	
 	reset: function() {
 		this.setProperties({
 			username: "",

@@ -21,7 +21,7 @@ Tranquility.AuthenticatedRoute = Ember.Route.extend({
 		this.transitionTo('auth.login');
   	},
   	getJSONWithToken: function(url) {
-		var token = this.controllerFor('login').get('token');
+		var token = this.controllerFor('auth.login').get('token');
 		return $.getJSON(url, { token: token });
 	},
 	actions: {

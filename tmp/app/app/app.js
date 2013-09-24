@@ -11,7 +11,7 @@ window.Tranquility = Ember.Application.create({
 Tranquility.AuthenticatedRoute = Ember.Route.extend({
 	beforeModel: function(transition) {
 		if (!this.controllerFor('auth.login').get('token')) {
-			this.controllerFor('auth.login').set('errorMessage', 'You must be logged in to access that page.');
+			//this.controllerFor('auth.login').set('errorMessage', 'You must be logged in to access that page.');
 			this.redirectToLogin(transition);
 		}
 	},
@@ -21,7 +21,7 @@ Tranquility.AuthenticatedRoute = Ember.Route.extend({
 		this.transitionTo('auth.login');
   	},
   	getJSONWithToken: function(url) {
-		var token = this.controllerFor('login').get('token');
+		var token = this.controllerFor('auth.login').get('token');
 		return $.getJSON(url, { token: token });
 	},
 	actions: {

@@ -13,7 +13,7 @@ window.Tranquility = Ember.Application.create({
 Tranquility.AuthenticatedRoute = Ember.Route.extend({
 	beforeModel: function(transition) {
 		if (!this.controllerFor('auth.login').get('token')) {
-			this.controllerFor('auth.login').set('errorMessage', 'You must be logged in to access that page.');
+			//this.controllerFor('auth.login').set('errorMessage', 'You must be logged in to access that page.');
 			this.redirectToLogin(transition);
 		}
 	},
@@ -23,7 +23,7 @@ Tranquility.AuthenticatedRoute = Ember.Route.extend({
 		this.transitionTo('auth.login');
   	},
   	getJSONWithToken: function(url) {
-		var token = this.controllerFor('login').get('token');
+		var token = this.controllerFor('auth.login').get('token');
 		return $.getJSON(url, { token: token });
 	},
 	actions: {
@@ -160,7 +160,7 @@ Tranquility.AboutRoute = Tranquility.AuthenticatedRoute.extend({
 		var loginController = this.controllerFor('auth.login'),
 		token = loginController.get('token');
 			//console.log(  'hello' );
-		return getJSONWithToken('/about.json');
+		return this.getJSONWithToken('/about.json');
 		//return $.getJSON('/about.json', { token: token });
 	}
 });
@@ -193,6 +193,12 @@ Tranquility.TodosRoute = Ember.Route.extend({
 (function() {
 
 Tranquility.AuthLoginController = Ember.Controller.extend({
+	token: localStorage.token,
+
+	tokenChanged: function() {
+		localStorage.token = this.get('token');
+	}.observes('token'),
+
 	actions: {
 		login: function() {
 			var data = this.getProperties('username', 'password'),
@@ -211,6 +217,7 @@ Tranquility.AuthLoginController = Ember.Controller.extend({
 			});
 		}
 	},
+	
 	reset: function() {
 		this.setProperties({
 			username: "",
