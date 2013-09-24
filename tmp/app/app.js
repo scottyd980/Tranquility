@@ -13,7 +13,6 @@ window.Tranquility = Ember.Application.create({
 Tranquility.AuthenticatedRoute = Ember.Route.extend({
 	beforeModel: function(transition) {
 		if (!this.controllerFor('auth.login').get('token')) {
-			//this.controllerFor('auth.login').set('errorMessage', 'You must be logged in to access that page.');
 			this.redirectToLogin(transition);
 		}
 	},
@@ -159,9 +158,7 @@ Tranquility.AboutRoute = Tranquility.AuthenticatedRoute.extend({
 	model: function() {
 		var loginController = this.controllerFor('auth.login'),
 		token = loginController.get('token');
-			//console.log(  'hello' );
 		return this.getJSONWithToken('/about.json');
-		//return $.getJSON('/about.json', { token: token });
 	}
 });
 
@@ -204,12 +201,21 @@ Tranquility.AuthLoginController = Ember.Controller.extend({
 			var data = this.getProperties('username', 'password'),
 				self = this;
 			
-			Ember.$.post('http://localhost:3000/login.json', data).then(function(response) {
-				
-				self.set('errorMessage', null);
+			$.post('http://localhost:3000/login.json', data).then(function(response) {
 
+				self.set('errorMessage', null);
 				if( response.success ) {
+
 					self.set('token', response.token);
+					var attemptedTransition = self.get('attemptedTransition');
+
+					if( attemptedTransition ) {
+						attemptedTransition.retry();
+						self.set('attemptedTransition', null);
+					} else {
+						self.transitionToRoute('IndexRoute');
+					}
+
 				} else {
 					self.set('errorMessage', response.message);
 				}
@@ -217,7 +223,7 @@ Tranquility.AuthLoginController = Ember.Controller.extend({
 			});
 		}
 	},
-	
+
 	reset: function() {
 		this.setProperties({
 			username: "",
