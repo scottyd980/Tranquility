@@ -163,7 +163,7 @@ function program1(depth0,data) {
   return buffer;
   }
 
-  data.buffer.push("<div class=\"block\">\n	<div class=\"title\">\n		<h3>Sign Up <small>Create a new account to start tracking issues now</small></h3>\n	</div>\n	<div class=\"body\">\n		");
+  data.buffer.push("<div class=\"block\">\n	<div class=\"title\">\n		<h3>Sign Up <small>Create a new account to start tracking issues</small></h3>\n	</div>\n	<div class=\"body\">\n		");
   hashTypes = {};
   hashContexts = {};
   stack1 = helpers['if'].call(depth0, "errorMessage", {hash:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});

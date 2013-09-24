@@ -3,7 +3,7 @@ Tranquility.AboutRoute = Tranquility.AuthenticatedRoute.extend({
 		var loginController = this.controllerFor('auth.login'),
 		token = loginController.get('token');
 			//console.log(  'hello' );
-		//return getJSONWithToken('/about.json');
-		return $.getJSON('/about.json', { token: token });
+		return getJSONWithToken('/about.json');
+		//return $.getJSON('/about.json', { token: token });
 	}
 });
