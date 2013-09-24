@@ -17,8 +17,12 @@
         <li>{{#link-to 'about'}}About{{/link-to}}</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li>{{#link-to 'auth.signup'}}Sign Up{{/link-to}}</li>
-        <li>{{#link-to 'auth.login'}}Login{{/link-to}}</li>
+        {{#if authenticated}}
+          <li>{{#link-to 'auth.logout'}}Logout{{/link-to}}</li>
+        {{else}}
+          <li>{{#link-to 'auth.signup'}}Sign Up{{/link-to}}</li>
+          <li>{{#link-to 'auth.login'}}Login{{/link-to}}</li>
+        {{/if}}
       </ul>
     </div><!-- /.navbar-collapse -->
   </div>
