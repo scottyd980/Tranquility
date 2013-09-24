@@ -36,6 +36,14 @@ Tranquility.AuthenticatedRoute = Ember.Route.extend({
   	}
 });
 
+Tranquility.AuthenticationRoute = Ember.Route.extend({
+	beforeModel: function(transition) {
+		if (this.controllerFor('auth.login').get('token')) {
+			this.transitionTo('index');
+		}
+	}
+});
+
 // Load mixins and components before anything else
 
 
@@ -144,7 +152,17 @@ Tranquility.Site.FIXTURES = [
 
 (function() {
 
-Tranquility.AuthLoginRoute = Ember.Route.extend({
+Tranquility.AuthLoginRoute = Tranquility.AuthenticationRoute.extend({
+	setupController: function( controller, context ) {
+		controller.reset();
+	}
+});
+
+})();
+
+(function() {
+
+Tranquility.AuthSignupRoute = Tranquility.AuthenticationRoute.extend({
 	setupController: function( controller, context ) {
 		controller.reset();
 	}

@@ -34,6 +34,14 @@ Tranquility.AuthenticatedRoute = Ember.Route.extend({
   	}
 });
 
+Tranquility.AuthenticationRoute = Ember.Route.extend({
+	beforeModel: function(transition) {
+		if (this.controllerFor('auth.login').get('token')) {
+			this.transitionTo('index');
+		}
+	}
+});
+
 // Load mixins and components before anything else
 require('mixins/*');
 require('components/*');
