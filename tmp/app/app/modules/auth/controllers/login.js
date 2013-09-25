@@ -5,6 +5,10 @@ Tranquility.AuthLoginController = Ember.Controller.extend({
 		localStorage.token = this.get('token');
 	}.observes('token'),
 
+	authErrorChanged: function() {
+		this.set('errorMessage', this.get('authError'));
+	}.observes('authError'),
+
 	actions: {
 		login: function() {
 			var data = this.getProperties('username', 'password'),
@@ -16,13 +20,14 @@ Tranquility.AuthLoginController = Ember.Controller.extend({
 				if( response.success ) {
 
 					self.set('token', response.token);
+					self.set('authenticated', true);
 					var attemptedTransition = self.get('attemptedTransition');
 
 					if( attemptedTransition ) {
 						attemptedTransition.retry();
 						self.set('attemptedTransition', null);
 					} else {
-						self.transitionToRoute('IndexRoute');
+						self.transitionToRoute('index');
 					}
 
 				} else {
@@ -37,7 +42,8 @@ Tranquility.AuthLoginController = Ember.Controller.extend({
 		this.setProperties({
 			username: "",
 			password: "",
-			errorMessage: null
+			errorMessage: null,
+			authError: null
 		});
 	}
 });

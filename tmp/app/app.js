@@ -19,6 +19,7 @@ Tranquility.AuthenticatedRoute = Ember.Route.extend({
 	redirectToLogin: function(transition) {
 		var loginController = this.controllerFor('auth.login');
 		loginController.set('attemptedTransition', transition);
+		loginController.set('authError', 'You must be logged in to do that.');
 		this.transitionTo('auth.login');
   	},
   	getJSONWithToken: function(url) {
@@ -153,8 +154,9 @@ Tranquility.Site.FIXTURES = [
 (function() {
 
 Tranquility.AuthLoginRoute = Tranquility.AuthenticationRoute.extend({
-	setupController: function( controller, context ) {
-		controller.reset();
+	exit: function() {
+		var loginController = this.controllerFor('auth.login');
+		loginController.reset();
 	}
 });
 
@@ -214,6 +216,10 @@ Tranquility.AuthLoginController = Ember.Controller.extend({
 		localStorage.token = this.get('token');
 	}.observes('token'),
 
+	authErrorChanged: function() {
+		this.set('errorMessage', this.get('authError'));
+	}.observes('authError'),
+
 	actions: {
 		login: function() {
 			var data = this.getProperties('username', 'password'),
@@ -225,13 +231,14 @@ Tranquility.AuthLoginController = Ember.Controller.extend({
 				if( response.success ) {
 
 					self.set('token', response.token);
+					self.set('authenticated', true);
 					var attemptedTransition = self.get('attemptedTransition');
 
 					if( attemptedTransition ) {
 						attemptedTransition.retry();
 						self.set('attemptedTransition', null);
 					} else {
-						self.transitionToRoute('IndexRoute');
+						self.transitionToRoute('index');
 					}
 
 				} else {
@@ -246,7 +253,8 @@ Tranquility.AuthLoginController = Ember.Controller.extend({
 		this.setProperties({
 			username: "",
 			password: "",
-			errorMessage: null
+			errorMessage: null,
+			authError: null
 		});
 	}
 });
@@ -330,11 +338,8 @@ Tranquility.Router.map(function() {
   this.route('about', { path: '/about' });
   this.resource('auth', function() {
   	this.route('login', { path: '/login' });
+  	this.route('logout', { path: '/logout' });
   	this.route('signup', { path: '/signup' });
-  });
-
-  this.resource('todos', function () {
-    this.route('index', { path: '/' });
   });
 });
 

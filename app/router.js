@@ -5,8 +5,4 @@ Tranquility.Router.map(function() {
   	this.route('logout', { path: '/logout' });
   	this.route('signup', { path: '/signup' });
   });
-
-  this.resource('todos', function () {
-    this.route('index', { path: '/' });
-  });
 });

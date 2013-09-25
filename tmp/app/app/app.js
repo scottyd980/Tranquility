@@ -17,6 +17,7 @@ Tranquility.AuthenticatedRoute = Ember.Route.extend({
 	redirectToLogin: function(transition) {
 		var loginController = this.controllerFor('auth.login');
 		loginController.set('attemptedTransition', transition);
+		loginController.set('authError', 'You must be logged in to do that.');
 		this.transitionTo('auth.login');
   	},
   	getJSONWithToken: function(url) {
