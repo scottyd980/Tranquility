@@ -1,4 +1,6 @@
 Tranquility.AuthLoginController = Ember.Controller.extend({
+	needs: ['application'],
+
 	token: localStorage.token,
 
 	tokenChanged: function() {

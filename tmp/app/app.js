@@ -187,10 +187,15 @@ Tranquility.AboutRoute = Tranquility.AuthenticatedRoute.extend({
 (function() {
 
 Tranquility.ApplicationRoute = Ember.Route.extend({
-
-  model: function(params) { 
-      return this.store.find('site'); 
-  }
+	setupController: function( controller, model ) {
+		// var loginController = this.controllerFor('auth.login');
+		// var token = loginController.get('token');
+		// if( !Ember.isEmpty(token) ) {
+		// 	controller.set('loggedIn', true);
+		// } else {
+		// 	controller.set('loggedIn', false);
+		// }
+	}
 });
 
 
@@ -210,6 +215,8 @@ Tranquility.TodosRoute = Ember.Route.extend({
 (function() {
 
 Tranquility.AuthLoginController = Ember.Controller.extend({
+	needs: ['application'],
+
 	token: localStorage.token,
 
 	tokenChanged: function() {
@@ -272,6 +279,7 @@ Tranquility.AboutController = Ember.Controller.extend({
 (function() {
 
 Tranquility.ApplicationController = Ember.ArrayController.extend({
+	
 });
 
 })();
