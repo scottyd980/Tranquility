@@ -9,43 +9,44 @@ window.Tranquility = Ember.Application.create({
 });
 
 Tranquility.AuthenticatedRoute = Ember.Route.extend({
-	beforeModel: function(transition) {
-		if (!this.controllerFor('auth.login').get('token')) {
-			this.redirectToLogin(transition);
-		}
-	},
-	redirectToLogin: function(transition) {
-		var loginController = this.controllerFor('auth.login');
-		loginController.set('attemptedTransition', transition);
-		loginController.set('authError', 'You must be logged in to do that.');
-		this.transitionTo('auth.login');
-  	},
-  	getJSONWithToken: function(url) {
-		var token = this.controllerFor('auth.login').get('token');
-		return $.getJSON(url, { token: token });
-	},
-	actions: {
-	    error: function(reason, transition) {
-			if (reason.status === 401) {
-				this.redirectToLogin(transition);
-			} else {
-				this.redirectToLogin(transition);
-			}
-	    }
-  	}
+
+  beforeModel: function(transition) {
+    if ( !Tranquility.AuthManager.isAuthenticated() ) {
+      this.redirectToLogin(transition);
+    }
+  },
+
+  redirectToLogin: function(transition) {
+    var loginController = this.controllerFor('auth.login');
+    loginController.set('attemptedTransition', transition);
+    this.transitionTo('auth.login');
+  },
+
+  getJSONWithToken: function(url) {
+    return $.getJSON(url);
+  },
+
+  events: {
+    error: function(reason, transition) {
+      this.redirectToLogin(transition);
+    }
+  }
 });
 
 Tranquility.AuthenticationRoute = Ember.Route.extend({
-	beforeModel: function(transition) {
-		if (this.controllerFor('auth.login').get('token')) {
-			this.transitionTo('index');
-		}
-	}
+
+  beforeModel: function(transition) {
+    if (Tranquility.AuthManager.isAuthenticated()) {
+      this.transitionTo('index');
+    }
+  }
+  
 });
 
-// Load mixins and components before anything else
+// Load mixins/components/objects before anything else
 require('mixins/*');
 require('components/*');
+require('objects/*');
 
 require('store');
 require('modules/*/models/*');

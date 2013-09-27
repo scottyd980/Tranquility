@@ -133,7 +133,7 @@ app.post('/login.json', function(req, res) {
       password = body.password;
 
   if( username != null && password != null ) {
-    user.findOne({ 'username' : username }, 'email password', function(err, person){
+    user.findOne({ 'username' : username }, '_id email password', function(err, person){
       if(err) {
         res.send({
           success: false,
@@ -153,7 +153,8 @@ app.post('/login.json', function(req, res) {
             var currentToken = jwt.encode({username: username}, tokenSecret);
             res.send({
               success: true,
-              token: currentToken
+              token: currentToken,
+              user: person._id
             });
           } else {
             res.send({

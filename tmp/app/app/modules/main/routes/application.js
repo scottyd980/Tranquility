@@ -1,11 +1,12 @@
 Tranquility.ApplicationRoute = Ember.Route.extend({
-	setupController: function( controller, model ) {
-		// var loginController = this.controllerFor('auth.login');
-		// var token = loginController.get('token');
-		// if( !Ember.isEmpty(token) ) {
-		// 	controller.set('loggedIn', true);
-		// } else {
-		// 	controller.set('loggedIn', false);
-		// }
+	init: function() {
+		this._super();
+		Tranquility.AuthManager = Tranquility.Authenticator.create();
+	},
+	actions: {
+		logout: function() {
+			Tranquility.AuthManager.reset();
+			this.transitionTo('index');
+		}
 	}
 });

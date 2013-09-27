@@ -1,51 +1,40 @@
 Tranquility.AuthLoginController = Ember.Controller.extend({
-	needs: ['application'],
 
-	token: localStorage.token,
+  reset: function() {
+    this.setProperties({
+      username: "",
+      password: "",
+      errorMessage: ""
+    });
+  },
 
-	tokenChanged: function() {
-		localStorage.token = this.get('token');
-	}.observes('token'),
+  actions: {
+    login: function() {
 
-	authErrorChanged: function() {
-		this.set('errorMessage', this.get('authError'));
-	}.observes('authError'),
+      var self = this, data = this.getProperties('username', 'password');
 
-	actions: {
-		login: function() {
-			var data = this.getProperties('username', 'password'),
-				self = this;
-			
-			$.post('http://localhost:3000/login.json', data).then(function(response) {
+      // Clear out any error messages.
+      this.set('errorMessage', null);
 
-				self.set('errorMessage', null);
-				if( response.success ) {
+      $.post('/login.json', data).then(function(response) {
 
-					self.set('token', response.token);
-					self.set('authenticated', true);
-					var attemptedTransition = self.get('attemptedTransition');
+        if (response.success) {
+          Tranquility.AuthManager.authenticate(response.token, response.user);
 
-					if( attemptedTransition ) {
-						attemptedTransition.retry();
-						self.set('attemptedTransition', null);
-					} else {
-						self.transitionToRoute('index');
-					}
+          var attemptedTransition = self.get('attemptedTransition');
+          if (attemptedTransition) {
+            attemptedTransition.retry();
+            self.set('attemptedTransition', null);
+          } else {
+            // Redirect to 'index' by default.
+            self.transitionToRoute('index');
+          }
+        } else {
+          self.set('errorMessage', response.message);
+        }
 
-				} else {
-					self.set('errorMessage', response.message);
-				}
+      });
+    }
+  }
 
-			});
-		}
-	},
-
-	reset: function() {
-		this.setProperties({
-			username: "",
-			password: "",
-			errorMessage: null,
-			authError: null
-		});
-	}
 });

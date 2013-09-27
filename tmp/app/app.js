@@ -11,41 +11,41 @@ window.Tranquility = Ember.Application.create({
 });
 
 Tranquility.AuthenticatedRoute = Ember.Route.extend({
-	beforeModel: function(transition) {
-		if (!this.controllerFor('auth.login').get('token')) {
-			this.redirectToLogin(transition);
-		}
-	},
-	redirectToLogin: function(transition) {
-		var loginController = this.controllerFor('auth.login');
-		loginController.set('attemptedTransition', transition);
-		loginController.set('authError', 'You must be logged in to do that.');
-		this.transitionTo('auth.login');
-  	},
-  	getJSONWithToken: function(url) {
-		var token = this.controllerFor('auth.login').get('token');
-		return $.getJSON(url, { token: token });
-	},
-	actions: {
-	    error: function(reason, transition) {
-			if (reason.status === 401) {
-				this.redirectToLogin(transition);
-			} else {
-				this.redirectToLogin(transition);
-			}
-	    }
-  	}
+
+  beforeModel: function(transition) {
+    if ( !Tranquility.AuthManager.isAuthenticated() ) {
+      this.redirectToLogin(transition);
+    }
+  },
+
+  redirectToLogin: function(transition) {
+    var loginController = this.controllerFor('auth.login');
+    loginController.set('attemptedTransition', transition);
+    this.transitionTo('auth.login');
+  },
+
+  getJSONWithToken: function(url) {
+    return $.getJSON(url);
+  },
+
+  events: {
+    error: function(reason, transition) {
+      this.redirectToLogin(transition);
+    }
+  }
 });
 
 Tranquility.AuthenticationRoute = Ember.Route.extend({
-	beforeModel: function(transition) {
-		if (this.controllerFor('auth.login').get('token')) {
-			this.transitionTo('index');
-		}
-	}
+
+  beforeModel: function(transition) {
+    if (Tranquility.AuthManager.isAuthenticated()) {
+      this.transitionTo('index');
+    }
+  }
+  
 });
 
-// Load mixins and components before anything else
+// Load mixins/components/objects before anything else
 
 
 })();
@@ -90,64 +90,99 @@ Tranquility.TodoItemComponent = Ember.Component.extend({
 
 (function() {
 
+Tranquility.Authenticator = Ember.Object.extend({
 
-Tranquility.Store = DS.Store.extend({
-  revision: 12,
-  adapter: DS.FixtureAdapter.create()
-});
+  // Load the current user if the cookies exist and is valid
+  init: function() {
+    this._super();
 
+    // This will need to be replaced with a cookie/session token
+    var token = $.cookie('auth_token');
 
+    // This will need to be replaced with a cookie/session user_id
+    var authUserId  = $.cookie('auth_user');
 
-})();
+    if (!Ember.isEmpty(token) && !Ember.isEmpty(authUserId)) {
+      this.authenticate(token, authUserId);
+  }  
+},
 
-(function() {
+  // Determine if the user is currently authenticated.
+  isAuthenticated: function() {
+    return !Ember.isEmpty(this.get('sessionToken.token')) && !Ember.isEmpty(this.get('sessionToken.user'));
+},
 
+  // Authenticate the user. Once they are authenticated, set the access token to be submitted with all
+  // future AJAX requests to the server.
+authenticate: function(token, userId) {
+    $.ajaxSetup({
+        headers: { 'token': token }
+    });
+    //var user = User.find(userId);
+    this.set('sessionToken', Tranquility.SessionToken.create({
+      token: token,
+      user: userId
+  }));
+},
 
-Tranquility.Site = DS.Model.extend({
-  title: DS.attr('string'),
-  link: DS.attr('string')
-});
+  // Log out the user
+reset: function() {
+    Tranquility.__container__.lookup("route:application").transitionTo('index');
+    Ember.run.sync();
+    Ember.run.next(this, function(){
+        this.set('sessionToken', null);
+        $.ajaxSetup({
+            headers: { 'token': null }
+        });
+    });
+},
 
-Tranquility.Site.FIXTURES = [
-  {
-    id: 1,
-    title: 'About',
-    link: 'about'
-  },
-  {
-    id: 2,
-    title: 'Contact',
-    link: 'contact'
-  },
-  {
-    id: 3,
-    title: 'Todos',
-    link: 'todos'
+  // Ensure that when the sessionToken changes, we store the data in cookies in order for us to load
+  // the user when the browser is refreshed.
+  sessionTokenObserver: function() {
+    if (Ember.isEmpty(this.get('sessionToken'))) {
+      $.removeCookie('auth_token');
+      $.removeCookie('auth_user');
+  } else {
+      $.cookie('auth_token', this.get('sessionToken.token'));
+      $.cookie('auth_user', this.get('sessionToken.user'));
   }
-];
+}.observes('sessionToken')
+});
 
+})();
 
+(function() {
+
+Tranquility.SessionToken = Ember.Object.extend({
+  token: '',
+  user: null
+});
 
 })();
 
 (function() {
 
 
-  Tranquility.Todo = DS.Model.extend({
-    name: DS.attr('string'),
-    isDone: DS.attr('boolean')
-  });
+// Tranquility.Store = DS.Store.extend({
+//   revision: 12,
+//   adapter: DS.FixtureAdapter.create()
+// });
 
-  Tranquility.Todo.FIXTURES = [{
-    id: 'a',
-    name: 'Walk the dog',
-    isDone: false
-  }, {
-    id: 'b',
-    name: 'Buy groceries',
-    isDone: false
-  }]; 
 
+Tranquility.ApplicationAdapter = DS.FixtureAdapter;
+
+
+})();
+
+(function() {
+
+Tranquility.User = DS.Model.extend({
+	id:			DS.attr('string'),
+	name:		DS.attr('string'),
+	email:		DS.attr('string'),
+	password:	DS.attr('string')
+});
 
 })();
 
@@ -165,9 +200,9 @@ Tranquility.AuthLoginRoute = Tranquility.AuthenticationRoute.extend({
 (function() {
 
 Tranquility.AuthSignupRoute = Tranquility.AuthenticationRoute.extend({
-	setupController: function( controller, context ) {
-		controller.reset();
-	}
+	// setupController: function( controller, context ) {
+	// 	controller.reset();
+	// }
 });
 
 })();
@@ -187,83 +222,61 @@ Tranquility.AboutRoute = Tranquility.AuthenticatedRoute.extend({
 (function() {
 
 Tranquility.ApplicationRoute = Ember.Route.extend({
-	setupController: function( controller, model ) {
-		// var loginController = this.controllerFor('auth.login');
-		// var token = loginController.get('token');
-		// if( !Ember.isEmpty(token) ) {
-		// 	controller.set('loggedIn', true);
-		// } else {
-		// 	controller.set('loggedIn', false);
-		// }
+	init: function() {
+		this._super();
+		Tranquility.AuthManager = Tranquility.Authenticator.create();
+	},
+	actions: {
+		logout: function() {
+			Tranquility.AuthManager.reset();
+			this.transitionTo('index');
+		}
 	}
 });
-
-
-})();
-
-(function() {
-
-Tranquility.TodosRoute = Ember.Route.extend({
-  model: function(params) { 
-      return this.store.find('todo'); 
-  }
-});
-
 
 })();
 
 (function() {
 
 Tranquility.AuthLoginController = Ember.Controller.extend({
-	needs: ['application'],
 
-	token: localStorage.token,
+  reset: function() {
+    this.setProperties({
+      username: "",
+      password: "",
+      errorMessage: ""
+    });
+  },
 
-	tokenChanged: function() {
-		localStorage.token = this.get('token');
-	}.observes('token'),
+  actions: {
+    login: function() {
 
-	authErrorChanged: function() {
-		this.set('errorMessage', this.get('authError'));
-	}.observes('authError'),
+      var self = this, data = this.getProperties('username', 'password');
 
-	actions: {
-		login: function() {
-			var data = this.getProperties('username', 'password'),
-				self = this;
-			
-			$.post('http://localhost:3000/login.json', data).then(function(response) {
+      // Clear out any error messages.
+      this.set('errorMessage', null);
 
-				self.set('errorMessage', null);
-				if( response.success ) {
+      $.post('/login.json', data).then(function(response) {
 
-					self.set('token', response.token);
-					self.set('authenticated', true);
-					var attemptedTransition = self.get('attemptedTransition');
+        if (response.success) {
+          Tranquility.AuthManager.authenticate(response.token, response.user);
 
-					if( attemptedTransition ) {
-						attemptedTransition.retry();
-						self.set('attemptedTransition', null);
-					} else {
-						self.transitionToRoute('index');
-					}
+          var attemptedTransition = self.get('attemptedTransition');
+          if (attemptedTransition) {
+            attemptedTransition.retry();
+            self.set('attemptedTransition', null);
+          } else {
+            // Redirect to 'index' by default.
+            self.transitionToRoute('index');
+          }
+        } else {
+          self.set('errorMessage', response.message);
+        }
 
-				} else {
-					self.set('errorMessage', response.message);
-				}
+      });
+    }
+  }
 
-			});
-		}
-	},
-
-	reset: function() {
-		this.setProperties({
-			username: "",
-			password: "",
-			errorMessage: null,
-			authError: null
-		});
-	}
 });
 
 })();
@@ -278,45 +291,10 @@ Tranquility.AboutController = Ember.Controller.extend({
 
 (function() {
 
-Tranquility.ApplicationController = Ember.ArrayController.extend({
-	
-});
-
-})();
-
-(function() {
-
-Tranquility.TodosIndexController = Ember.Controller.extend({
-  needs: ['todos'],
-
-  actions: {
-    newTodo: function() { 
-        this.store.createRecord('todo', {
-          name: 'Get r done'
-        }); 
-    },
-
-    clearDone: function() {
-      var todos = this.get('controllers.todos');
-      var allDone = todos.filter(function(todo) {
-        return todo.get('isDone');
-      });
-
-      while (allDone.length > 0) {
-        var todo = allDone.pop(); 
-          todo.deleteRecord();
-          //todo.save(); 
-      }
-    }
-  }
-});
-
-
-})();
-
-(function() {
-
-Tranquility.TodosController = Ember.ArrayController.extend({
+Tranquility.ApplicationController = Ember.Controller.extend({
+	isAuthenticated: function() {
+		return Tranquility.AuthManager.isAuthenticated()
+	}.property('Tranquility.AuthManager.sessionToken')
 });
 
 })();

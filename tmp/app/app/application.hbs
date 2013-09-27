@@ -14,11 +14,13 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav">
-        <li>{{#link-to 'about'}}About{{/link-to}}</li>
+        {{#if isAuthenticated}}
+          <li>{{#link-to 'about'}}About{{/link-to}}</li>
+        {{/if}}
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        {{#if authenticated}}
-          <li>{{#link-to 'auth.logout'}}Logout{{/link-to}}</li>
+        {{#if isAuthenticated}}
+          <li><a {{action 'logout'}} href="">Logout</a></li>
         {{else}}
           <li>{{#link-to 'auth.signup'}}Sign Up{{/link-to}}</li>
           <li>{{#link-to 'auth.login'}}Login{{/link-to}}</li>
