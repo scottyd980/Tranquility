@@ -1,59 +1,30 @@
 body {
   font-size: 13px; }
 
-.btn-primary,
-.btn-success,
-.btn-info,
-.btn-warning,
-.btn-danger {
+.btn-primary, .btn-success, .btn-info, .btn-warning, .btn-danger {
   border: none; }
 
-.btn-default,
-.btn-primary,
-.btn-success,
-.btn-info,
-.btn-warning,
-.btn-danger {
+.btn-default, .btn-primary, .btn-success, .btn-info, .btn-warning, .btn-danger {
   -webkit-transition: 0.25s linear;
   -moz-transition: 0.25s linear;
   -o-transition: 0.25s linear;
   transition: 0.25s linear; }
 
-.btn-primary:active,
-.btn-success:active,
-.btn-info:active,
-.btn-warning:active,
-.btn-danger:active,
-.btn-primary.active,
-.btn-success.active,
-.btn-info.active,
-.btn-warning.active,
-.btn-danger.active {
+.btn-primary:active, .btn-success:active, .btn-info:active, .btn-warning:active, .btn-danger:active, .btn-primary.active, .btn-success.active, .btn-info.active, .btn-warning.active, .btn-danger.active {
   box-shadow: none;
   -webkit-box-shadow: none;
   border: none; }
 
-.btn-default:active,
-.btn-default.active {
+.btn-default:active, .btn-default.active {
   box-shadow: none;
   -webkit-box-shadow: none; }
 
-.btn-primary:hover,
-.btn-success:hover,
-.btn-info:hover,
-.btn-warning:hover,
-.btn-danger:hover,
-.btn-primary.hover,
-.btn-success.hover,
-.btn-info.hover,
-.btn-warning.hover,
-.btn-danger.hover {
+.btn-primary:hover, .btn-success:hover, .btn-info:hover, .btn-warning:hover, .btn-danger:hover, .btn-primary.hover, .btn-success.hover, .btn-info.hover, .btn-warning.hover, .btn-danger.hover {
   box-shadow: none;
   -webkit-box-shadow: none;
   border: none; }
 
-.btn-default:hover,
-.btn-default.hover {
+.btn-default:hover, .btn-default.hover {
   box-shadow: none;
   -webkit-box-shadow: none; }
 
@@ -67,8 +38,7 @@ body {
   font-size: 18px;
   line-height: 1.33; }
 
-.btn-sm,
-.btn-xs {
+.btn-sm, .btn-xs {
   padding: 5px 20px;
   font-size: 11px;
   line-height: 1.5; }
@@ -79,41 +49,34 @@ body {
 .btn-primary {
   background-color: #009966; }
 
-.btn-primary:hover,
-.btn-primary.hover {
+.btn-primary:hover, .btn-primary.hover {
   background-color: #0da673; }
 
 .btn-success {
   background-color: #33CC66; }
 
-.btn-success:hover,
-.btn-success.hover {
+.btn-success:hover, .btn-success.hover {
   background-color: #40d973; }
 
 .btn-warning {
   background-color: #FF9900; }
 
-.btn-warning:hover,
-.btn-warning.hover {
+.btn-warning:hover, .btn-warning.hover {
   background-color: #ffa60d; }
 
 .btn-danger {
   background-color: #CC3300; }
 
-.btn-danger:hover,
-.btn-danger.hover {
+.btn-danger:hover, .btn-danger.hover {
   background-color: #d9400d; }
 
 .btn-info {
   background-color: #0099ff; }
 
-.btn-info:hover,
-.btn-info.hover {
+.btn-info:hover, .btn-info.hover {
   background-color: #0da6ff; }
 
-.navbar-static-top,
-.navbar-fixed-top,
-.navbar-fixed-bottom {
+.navbar-static-top, .navbar-fixed-top, .navbar-fixed-bottom {
   border-radius: 0; }
 
 .panel {
