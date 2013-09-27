@@ -1,6 +1,8 @@
 
-Tranquility.Store = DS.Store.extend({
-  revision: 12,
-  adapter: DS.FixtureAdapter.create()
-});
+// Tranquility.Store = DS.Store.extend({
+//   revision: 12,
+//   adapter: DS.FixtureAdapter.create()
+// });
 
+
+Tranquility.ApplicationAdapter = DS.FixtureAdapter;
