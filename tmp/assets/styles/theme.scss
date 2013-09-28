@@ -1,21 +1,80 @@
-$primaryColor: #009966;
-$primaryHoverColor: #0da673;
-$successColor: #fff;
-$infoColor: #0099FF;
-$infoHoverColor: #0da6ff;
-$warningColor: #fff;
-$dangerColor: #fff;
+$defaultColor: #ddd;
+$defaultColorText: #333;
+$defaultColorLight: lighten($defaultColor, 5%);
+$defaultColorLighter: lighten($defaultColor, 10%);
+$defaultColorLightest: lighten($defaultColor, 20%);
+$defaultColorDark: darken($defaultColor, 5%);
+$defaultColorDarker: darken($defaultColor, 10%);
+$defaultColorDarkest: darken($defaultColor, 20%);
+
+$primaryColor: #00acec;
+$primaryColorText: #fff;
+$primaryColorLight: lighten($primaryColor, 5%);
+$primaryColorLighter: lighten($primaryColor, 10%);
+$primaryColorLightest: lighten($primaryColor, 20%);
+$primaryColorDark: darken($primaryColor, 5%);
+$primaryColorDarker: darken($primaryColor, 10%);
+$primaryColorDarkest: darken($primaryColor, 20%);
+
+$successColor: #49bf67;
+$successColorText: #fff;
+$successColorLight: lighten($successColor, 5%);
+$successColorLighter: lighten($successColor, 10%);
+$successColorLightest: lighten($successColor, 20%);
+$successColorDark: darken($successColor, 5%);
+$successColorDarker: darken($successColor, 10%);
+$successColorDarkest: darken($successColor, 40%);
+
+$infoColor: #9564e2;
+$infoColorText: #fff;
+$infoColorLight: lighten($infoColor, 5%);
+$infoColorLighter: lighten($infoColor, 10%);
+$infoColorLightest: lighten($infoColor, 20%);
+$infoColorDark: darken($infoColor, 5%);
+$infoColorDarker: darken($infoColor, 10%);
+$infoColorDarkest: darken($infoColor, 40%);
+
+$warningColor: #f8a326;
+$warningColorText: #fff;
+$warningColorLight: lighten($warningColor, 5%);
+$warningColorLighter: lighten($warningColor, 10%);
+$warningColorLightest: lighten($warningColor, 20%);
+$warningColorDark: darken($warningColor, 5%);
+$warningColorDarker: darken($warningColor, 10%);
+$warningColorDarkest: darken($warningColor, 40%);
+
+$dangerColor: #ff5454;
+$dangerColorText: #fff;
+$dangerColorLight: lighten($dangerColor, 5%);
+$dangerColorLighter: lighten($dangerColor, 10%);
+$dangerColorLightest: lighten($dangerColor, 20%);
+$dangerColorDark: darken($dangerColor, 5%);
+$dangerColorDarker: darken($dangerColor, 10%);
+$dangerColorDarkest: darken($dangerColor, 40%);
+
+$stripeColor: #f3f2ef;
+$stripeTextColor: #404040;
+$stripeTextHoverColor: lighten(#404040, 30%);
+
+* {
+  box-sizing:border-box;
+}
 
 body {
   font-size: 13px;
 }
 
+.btn-default,
 .btn-primary,
 .btn-success,
 .btn-info,
 .btn-warning,
 .btn-danger {
   border: none;
+}
+
+.btn i {
+  padding-right: 5px;
 }
 
 .btn-default,
@@ -31,11 +90,13 @@ body {
   transition: 0.25s linear;
 }
 
+.btn-default:active,
 .btn-primary:active,
 .btn-success:active,
 .btn-info:active,
 .btn-warning:active,
 .btn-danger:active,
+.btn-default.active,
 .btn-primary.active,
 .btn-success.active,
 .btn-info.active,
@@ -52,11 +113,13 @@ body {
   -webkit-box-shadow: none;
 }
 
+.btn-default:hover,
 .btn-primary:hover,
 .btn-success:hover,
 .btn-info:hover,
 .btn-warning:hover,
 .btn-danger:hover,
+.btn-default.hover,
 .btn-primary.hover,
 .btn-success.hover,
 .btn-info.hover,
@@ -74,13 +137,13 @@ body {
 }
 
 .btn {
-  padding: 6px 25px;
+  padding: 8px 40px;
   font-size: 13px;
   border-radius: 2px;
 }
 
 .btn-lg {
-  padding: 10px 35px;
+  padding: 10px 45px;
   font-size: 18px;
   line-height: 1.33;
 }
@@ -102,12 +165,12 @@ body {
 }
 
 .btn-default {
-  
+  background-color: $defaultColor;
 }
 
 .btn-default:hover,
 .btn-default.hover {
-  
+  background-color: $defaultColorLight;
 }
 
 .btn-primary {
@@ -116,34 +179,34 @@ body {
 
 .btn-primary:hover,
 .btn-primary.hover {
-  background-color: $primaryHoverColor;
+  background-color: $primaryColorLight;
 }
 
 .btn-success {
-  background-color: #33CC66;
+  background-color: $successColor;
 }
 
 .btn-success:hover,
 .btn-success.hover {
-  background-color: #40d973;
+  background-color: $successColorLight;
 }
 
 .btn-warning {
-  background-color: #FF9900;
+  background-color: $warningColor;
 }
 
 .btn-warning:hover,
 .btn-warning.hover {
-  background-color: #ffa60d;
+  background-color: $warningColorLight;
 }
 
 .btn-danger {
-  background-color: #CC3300;
+  background-color: $dangerColor;
 }
 
 .btn-danger:hover,
 .btn-danger.hover {
-  background-color: #d9400d;
+  background-color: $dangerColorLight;
 }
 
 .btn-info {
@@ -152,7 +215,7 @@ body {
 
 .btn-info:hover,
 .btn-info.hover {
-  background-color: $infoHoverColor;
+  background-color: $infoColorLight;
 }
 
 .thumbnail,
@@ -169,20 +232,48 @@ body {
 }
 
 .navbar {
- 
+  min-height: 60px;
 }
 
 .navbar .navbar-nav > .active > a {
   
 }
 
-.navbar-brand,
-.navbar-nav > li > a {
-  
+.navbar-brand {
+  line-height: 60px;
+  padding: 0px 15px;
+
+  img {
+    padding-bottom: 5px;
+  }
 }
 
 .navbar-inverse {
-  
+  border: none;
+  background: $stripeColor;
+
+  .navbar-toggle {
+    margin-top: 13px;
+    margin-bottom: 13px;
+    border: none;
+
+    .icon-bar {
+      background-color: $stripeTextColor;
+    }
+
+    &:focus, &:hover {
+      background: none;
+
+      .icon-bar {
+        background-color: $stripeTextHoverColor;
+      }
+    }
+  }
+
+}
+
+.navbar-inverse .navbar-collapse {
+  border-color: #ddd;
 }
 
 .navbar-inverse .navbar-nav > .active > a {
@@ -191,6 +282,23 @@ body {
 
 .navbar-inverse .navbar-brand,
 .navbar-inverse .navbar-nav > li > a {
+  color: $stripeTextColor;
+
+  &:hover {
+    color: $stripeTextColor;
+  }
+}
+
+.navbar-inverse .navbar-nav > li > a {
+  padding: 0px;
+  padding-bottom: 1px;
+  margin: 20px 15px 19px 15px;
+
+  &:hover {
+    padding-bottom: 0px;
+    border-bottom: 1px dotted $stripeTextColor;
+  }
+
 }
 
 .navbar-static-top,
@@ -200,22 +308,38 @@ body {
 }
 
 .alert {
+  border-radius: 2px;
+  border: none;
+}
+
+.alert-default {
+  background-color: $defaultColorLight;
+  color: $defaultColorText;
+}
+
+.alert-primary {
+  background-color: $primaryColorLight;
+  color: $primaryColorText;
 }
 
 .alert-success {
-  
+  background-color: $successColorLight;
+  color: $successColorText;
 }
 
 .alert-info {
-  
+  background-color: $infoColorLight;
+  color: $infoColorText;
 }
 
 .alert-warning {
- 
+  background-color: $warningColorLight;
+  color: $warningColorText;
 }
 
 .alert-danger {
-
+  background-color: $dangerColorLight;
+  color: $dangerColorText;
 }
 
 .progress {
@@ -274,52 +398,52 @@ body {
 
 .panel-primary {
   border-color: $primaryColor;
-}
 
-.panel-primary > .panel-heading {
-  color: #fff;
-  background-color: $primaryColor;
-  border-color: $primaryColor;
+  &> .panel-heading {
+    color: #fff;
+    background-color: $primaryColor;
+    border-color: $primaryColor;
+  }
 }
 
 .panel-success {
-  border-color: #33CC66;
-}
+  border-color: $successColor;
 
-.panel-success > .panel-heading {
-  color: #fff;
-  background-color: #33CC66;
-  border-color: #33CC66;
+  &> .panel-heading {
+    color: #fff;
+    background-color: $successColor;
+    border-color: $successColor;
+  }
 }
 
 .panel-info {
   border-color: $infoColor;
-}
 
-.panel-info > .panel-heading {
-  color: #fff;
-  background-color: $infoColor;
-  border-color: $infoColor;
+  &> .panel-heading {
+    color: #fff;
+    background-color: $infoColor;
+    border-color: $infoColor;
+  }
 }
 
 .panel-warning {
-  border-color: #FF9900;
-}
+  border-color: $warningColor;
 
-.panel-warning > .panel-heading {
-  color: #fff;
-  background-color: #FF9900;
-  border-color: #FF9900;
+  &> .panel-heading {
+    color: #fff;
+    background-color: $warningColor;
+    border-color: $warningColor;
+  }
 }
 
 .panel-danger {
-  border-color: #CC3300;
-}
+  border-color: $dangerColor;
 
-.panel-danger > .panel-heading {
-  color: #fff;
-  background-color: #CC3300;
-  border-color: #CC3300;
+  &> .panel-heading {
+    color: #fff;
+    background-color: $dangerColor;
+    border-color: $dangerColor;
+  }
 }
 
 .well {

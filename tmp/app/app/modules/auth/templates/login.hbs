@@ -1,21 +1,26 @@
-<div class="block">
-	<div class="title">
-		<h3>Login <small>Enter your credentials to access your account</small></h3>
-	</div>
-	<div class="body">
-		{{#if errorMessage}}
-			<div class="alert alert-danger">{{errorMessage}}</div>
-		{{/if}}
-		<form {{action login on="submit"}} role="form">
-			<div class="form-group">
-				<label for="username">Username</label>
-				{{input value=username type="text" id="username" class="form-control" }}
+<section class="section">
+	<div class="container">
+	  <div class="row">
+	    <div class="col-lg-12">
+			<h3 class="page-title">Login <small>Enter your credentials to securely access your account</small></h3>
+			<div class="page-body">
+				{{#if errorMessage}}
+					<div class="alert alert-danger">{{errorMessage}}</div>
+				{{/if}}
+				<form {{action login on="submit"}} role="form">
+					<div class="form-group">
+						<label for="username">Username</label>
+						{{input value=username type="text" id="username" class="form-control" }}
+					</div>
+					<div class="form-group">
+						<label for="password">Password</label>
+						{{input value=password type="password" id="password" class="form-control" }}
+					</div>
+					{{input class="btn btn-primary" type="submit" value="Login"}}
+				</form>
 			</div>
-			<div class="form-group">
-				<label for="password">Password</label>
-				{{input value=password type="password" id="password" class="form-control" }}
-			</div>
-			{{input class="btn btn-primary" type="submit" value="Login"}}
-		</form>
+
+	    </div>
+	  </div>
 	</div>
-</div>
+</section>

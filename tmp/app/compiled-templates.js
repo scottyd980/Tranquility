@@ -62,7 +62,7 @@ function program9(depth0,data) {
   data.buffer.push("Login");
   }
 
-  data.buffer.push("<nav class=\"navbar navbar-inverse navbar-fixed-top\" role=\"navigation\">\n  <!-- Brand and toggle get grouped for better mobile display -->\n  <div class=\"container\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-ex1-collapse\">\n        <span class=\"sr-only\">Toggle navigation</span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n      </button>\n      <a class=\"navbar-brand\" href=\"#\"><img src=\"../assets/img/logo.png\"/> Tranquility</a>\n    </div>\n\n    <!-- Collect the nav links, forms, and other content for toggling -->\n    <div class=\"collapse navbar-collapse navbar-ex1-collapse\">\n      <ul class=\"nav navbar-nav\">\n        ");
+  data.buffer.push("<nav class=\"navbar navbar-inverse navbar-fixed-top\" role=\"navigation\">\n  <!-- Brand and toggle get grouped for better mobile display -->\n  <div class=\"container\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-ex1-collapse\">\n        <span class=\"sr-only\">Toggle navigation</span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n      </button>\n      <a class=\"navbar-brand\" href=\"#\"><img src=\"../assets/img/logo2.png\"/> Tranquility</a>\n    </div>\n\n    <!-- Collect the nav links, forms, and other content for toggling -->\n    <div class=\"collapse navbar-collapse navbar-ex1-collapse\">\n      <ul class=\"nav navbar-nav\">\n        ");
   hashTypes = {};
   hashContexts = {};
   stack1 = helpers['if'].call(depth0, "isAuthenticated", {hash:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
@@ -72,11 +72,11 @@ function program9(depth0,data) {
   hashContexts = {};
   stack1 = helpers['if'].call(depth0, "isAuthenticated", {hash:{},inverse:self.program(6, program6, data),fn:self.program(4, program4, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("\n      </ul>\n    </div><!-- /.navbar-collapse -->\n  </div>\n</nav>\n<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col-lg-12\">\n      ");
+  data.buffer.push("\n      </ul>\n    </div><!-- /.navbar-collapse -->\n  </div>\n</nav>\n\n");
   hashTypes = {};
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "outlet", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push("\n    </div>\n  </div>\n</div>\n");
+  data.buffer.push("\n\n<footer>\n\n</footer>");
   return buffer;
   
 });
@@ -127,26 +127,26 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   var buffer = '', hashTypes, hashContexts;
-  data.buffer.push("\n			<div class=\"alert alert-danger\">");
+  data.buffer.push("\n					<div class=\"alert alert-danger\">");
   hashTypes = {};
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "errorMessage", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push("</div>\n		");
+  data.buffer.push("</div>\n				");
   return buffer;
   }
 
-  data.buffer.push("<div class=\"block\">\n	<div class=\"title\">\n		<h3>Login <small>Enter your credentials to access your account</small></h3>\n	</div>\n	<div class=\"body\">\n		");
+  data.buffer.push("<section class=\"section\">\n	<div class=\"container\">\n	  <div class=\"row\">\n	    <div class=\"col-lg-12\">\n			<h3 class=\"page-title\">Login <small>Enter your credentials to securely access your account</small></h3>\n			<div class=\"page-body\">\n				");
   hashTypes = {};
   hashContexts = {};
   stack1 = helpers['if'].call(depth0, "errorMessage", {hash:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("\n		<form ");
+  data.buffer.push("\n				<form ");
   hashContexts = {'on': depth0};
   hashTypes = {'on': "STRING"};
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "login", {hash:{
     'on': ("submit")
   },contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push(" role=\"form\">\n			<div class=\"form-group\">\n				<label for=\"username\">Username</label>\n				");
+  data.buffer.push(" role=\"form\">\n					<div class=\"form-group\">\n						<label for=\"username\">Username</label>\n						");
   hashContexts = {'value': depth0,'type': depth0,'id': depth0,'class': depth0};
   hashTypes = {'value': "ID",'type': "STRING",'id': "STRING",'class': "STRING"};
   options = {hash:{
@@ -156,7 +156,7 @@ function program1(depth0,data) {
     'class': ("form-control")
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers.input || depth0.input),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
-  data.buffer.push("\n			</div>\n			<div class=\"form-group\">\n				<label for=\"password\">Password</label>\n				");
+  data.buffer.push("\n					</div>\n					<div class=\"form-group\">\n						<label for=\"password\">Password</label>\n						");
   hashContexts = {'value': depth0,'type': depth0,'id': depth0,'class': depth0};
   hashTypes = {'value': "ID",'type': "STRING",'id': "STRING",'class': "STRING"};
   options = {hash:{
@@ -166,7 +166,7 @@ function program1(depth0,data) {
     'class': ("form-control")
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers.input || depth0.input),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
-  data.buffer.push("\n			</div>\n			");
+  data.buffer.push("\n					</div>\n					");
   hashContexts = {'class': depth0,'type': depth0,'value': depth0};
   hashTypes = {'class': "STRING",'type': "STRING",'value': "STRING"};
   options = {hash:{
@@ -175,7 +175,7 @@ function program1(depth0,data) {
     'value': ("Login")
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers.input || depth0.input),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
-  data.buffer.push("\n		</form>\n	</div>\n</div>");
+  data.buffer.push("\n				</form>\n			</div>\n\n	    </div>\n	  </div>\n	</div>\n</section>");
   return buffer;
   
 });
@@ -188,26 +188,36 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   var buffer = '', hashTypes, hashContexts;
-  data.buffer.push("\n			<div class=\"alert alert-danger\">");
+  data.buffer.push("\n						<div class=\"alert alert-danger\">");
   hashTypes = {};
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "errorMessage", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push("</div>\n		");
+  data.buffer.push("</div>\n					");
   return buffer;
   }
 
-  data.buffer.push("<div class=\"block\">\n	<div class=\"title\">\n		<h3>Sign Up <small>Create a new account to start tracking issues</small></h3>\n	</div>\n	<div class=\"body\">\n		");
+  data.buffer.push("<section class=\"section\">\n	<div class=\"container\">\n	  <div class=\"row\">\n	    <div class=\"col-lg-12\">\n			<h3 class=\"page-title\">Sign Up <small>Create a new account to start tracking issues</small></h3>\n				<div class=\"page-body\">\n					");
   hashTypes = {};
   hashContexts = {};
   stack1 = helpers['if'].call(depth0, "errorMessage", {hash:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("\n		<form ");
+  data.buffer.push("\n					<form ");
   hashContexts = {'on': depth0};
   hashTypes = {'on': "STRING"};
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "signup", {hash:{
     'on': ("submit")
   },contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push(" role=\"form\">\n			<div class=\"form-group\">\n				<label for=\"username\">Username</label>\n				");
+  data.buffer.push(" role=\"form\">\n						<div class=\"form-group\">\n							<label for=\"fullname\">Full Name</label>\n							");
+  hashContexts = {'value': depth0,'type': depth0,'id': depth0,'class': depth0};
+  hashTypes = {'value': "ID",'type': "STRING",'id': "STRING",'class': "STRING"};
+  options = {hash:{
+    'value': ("fullname"),
+    'type': ("text"),
+    'id': ("fullname"),
+    'class': ("form-control")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.input || depth0.input),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
+  data.buffer.push("\n						</div>\n						<div class=\"form-group\">\n							<label for=\"username\">Username</label>\n							");
   hashContexts = {'value': depth0,'type': depth0,'id': depth0,'class': depth0};
   hashTypes = {'value': "ID",'type': "STRING",'id': "STRING",'class': "STRING"};
   options = {hash:{
@@ -217,7 +227,7 @@ function program1(depth0,data) {
     'class': ("form-control")
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers.input || depth0.input),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
-  data.buffer.push("\n			</div>\n			<div class=\"form-group\">\n				<label for=\"email\">Email Address</label>\n				");
+  data.buffer.push("\n						</div>\n						<div class=\"form-group\">\n							<label for=\"email\">Email Address</label>\n							");
   hashContexts = {'value': depth0,'type': depth0,'id': depth0,'class': depth0};
   hashTypes = {'value': "ID",'type': "STRING",'id': "STRING",'class': "STRING"};
   options = {hash:{
@@ -227,7 +237,7 @@ function program1(depth0,data) {
     'class': ("form-control")
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers.input || depth0.input),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
-  data.buffer.push("\n			</div>\n			<div class=\"form-group\">\n				<label for=\"password\">Password</label>\n				");
+  data.buffer.push("\n						</div>\n						<div class=\"form-group\">\n							<label for=\"password\">Password</label>\n							");
   hashContexts = {'value': depth0,'type': depth0,'id': depth0,'class': depth0};
   hashTypes = {'value': "ID",'type': "STRING",'id': "STRING",'class': "STRING"};
   options = {hash:{
@@ -237,7 +247,7 @@ function program1(depth0,data) {
     'class': ("form-control")
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers.input || depth0.input),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
-  data.buffer.push("\n			</div>\n			");
+  data.buffer.push("\n						</div>\n						");
   hashContexts = {'class': depth0,'type': depth0,'value': depth0};
   hashTypes = {'class': "STRING",'type': "STRING",'value': "STRING"};
   options = {hash:{
@@ -246,7 +256,7 @@ function program1(depth0,data) {
     'value': ("Sign Up")
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers.input || depth0.input),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
-  data.buffer.push("\n		</form>\n	</div>\n</div>");
+  data.buffer.push("\n					</form>\n				</div>\n	    </div>\n	  </div>\n	</div>\n</section>");
   return buffer;
   
 });
@@ -277,6 +287,6 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   
 
 
-  data.buffer.push("<div class=\"striped\">\n	<a class=\"btn btn-primary\">Test</a>\n	<a class=\"btn btn-success\">Test</a>\n	<a class=\"btn btn-info\">Test</a>\n	<a class=\"btn btn-warning\">Test</a>\n	<a class=\"btn btn-danger\">Test</a>\n</div>\n<h3>Index Template</h3>");
+  data.buffer.push("<section class=\"section\">\n	<div class=\"container\">\n	  <div class=\"row\">\n	    <div class=\"col-lg-6\">\n	    	<h2>Stabilize Your Workflow.</h2>\n	    	<p class=\"callout\">\n	    		Aenean lacinia bibendum nulla sed consectetur. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Aenean lacinia bibendum nulla sed consectetur.\n	    	</p>\n	    	<p class=\"callout\">\n		    	Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam quis risus eget urna mollis ornare vel eu leo. Maecenas sed diam eget risus varius blandit sit amet non magna. Cras mattis consectetur purus sit amet fermentum. \n		    </p>\n	    </div>\n	    <div class=\"col-lg-6 align-right\">\n	    	<img src=\"assets/img/mac.png\" />\n	    </div>\n	  </div>\n	</div>\n</section>\n<section class=\"section striped\">\n	<div class=\"container\">\n	  <div class=\"row\">\n	    <div class=\"col-lg-6\">\n	    	<img src=\"assets/img/laptop.png\" />\n	    </div>\n	    <div class=\"col-lg-6\">\n	    	<h2>Another Great Point.</h2>\n	    	<p class=\"callout\">\n	    		Aenean lacinia bibendum nulla sed consectetur. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Aenean lacinia bibendum nulla sed consectetur.\n	    	</p>\n	    </div>\n	  </div>\n	</div>\n</section>\n<section class=\"section\">\n	<div class=\"container\">\n	  <div class=\"row\">\n	    <div class=\"col-lg-12\">\n	    	<a class=\"btn btn-primary\">Test</a>\n			<a class=\"btn btn-success\">Test</a>\n			<a class=\"btn btn-info\">Test</a>\n			<a class=\"btn btn-warning\">Test</a>\n			<a class=\"btn btn-danger\">Test</a>\n	    </div>\n	  </div>\n	</div>\n</section>\n");
   
 });
