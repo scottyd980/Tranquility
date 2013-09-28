@@ -217,16 +217,6 @@ function program1(depth0,data) {
     'class': ("form-control")
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers.input || depth0.input),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
-  data.buffer.push("\n						</div>\n						<div class=\"form-group\">\n							<label for=\"username\">Username</label>\n							");
-  hashContexts = {'value': depth0,'type': depth0,'id': depth0,'class': depth0};
-  hashTypes = {'value': "ID",'type': "STRING",'id': "STRING",'class': "STRING"};
-  options = {hash:{
-    'value': ("username"),
-    'type': ("text"),
-    'id': ("username"),
-    'class': ("form-control")
-  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
-  data.buffer.push(escapeExpression(((stack1 = helpers.input || depth0.input),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
   data.buffer.push("\n						</div>\n						<div class=\"form-group\">\n							<label for=\"email\">Email Address</label>\n							");
   hashContexts = {'value': depth0,'type': depth0,'id': depth0,'class': depth0};
   hashTypes = {'value': "ID",'type': "STRING",'id': "STRING",'class': "STRING"};
@@ -234,6 +224,16 @@ function program1(depth0,data) {
     'value': ("email"),
     'type': ("text"),
     'id': ("email"),
+    'class': ("form-control")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.input || depth0.input),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
+  data.buffer.push("\n						</div>\n						<div class=\"form-group\">\n							<label for=\"username\">Username</label>\n							");
+  hashContexts = {'value': depth0,'type': depth0,'id': depth0,'class': depth0};
+  hashTypes = {'value': "ID",'type': "STRING",'id': "STRING",'class': "STRING"};
+  options = {hash:{
+    'value': ("username"),
+    'type': ("text"),
+    'id': ("username"),
     'class': ("form-control")
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers.input || depth0.input),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
