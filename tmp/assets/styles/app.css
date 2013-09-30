@@ -15,6 +15,30 @@
 * {
   box-sizing: border-box; }
 
+html, body {
+  height: 100%; }
+
+body > .ember-view {
+  height: 100%;
+  font-family: "Proxima Nova Light", sans-serif; }
+
+.wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -80px;
+  /* the bottom margin is the negative value of the footer's height */ }
+
+footer, .push {
+  height: 80px;
+  /* .push must be the same height as .footer */ }
+
+footer {
+  background: #404040;
+  color: #999999;
+  line-height: 80px;
+  font-size: 12px; }
+
 body {
   padding-top: 60px; }
 
@@ -22,14 +46,14 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "Freight Sans", sans-serif;
   margin: 0;
   margin-bottom: 0.5em; }
-  h1 > small, h2 > small, h3 > small, h4 > small, h5 > small, h6 > small {
-    font-family: "Proxima Nova Light", sans-serif; }
+h1 > small, h2 > small, h3 > small, h4 > small, h5 > small, h6 > small {
+  font-family: "Proxima Nova Light", sans-serif; }
 
 p {
   line-height: 1.7;
   font-family: "Proxima Nova Light", sans-serif; }
-  p.callout {
-    font-size: 16px; }
+p.callout {
+  font-size: 16px; }
 
 #hero {
   background: url("../img/herobg.png") no-repeat 50% 50%;
@@ -40,14 +64,14 @@ p {
   width: 100%; }
 
 .section {
-  padding-top: 30px;
-  padding-bottom: 30px; }
-  .section h3.page-title {
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 10px;
-    margin-bottom: 15px; }
-  .section.striped {
-    background-color: #f3f2ef; }
+  padding-top: 50px;
+  padding-bottom: 50px; }
+.section h3.page-title {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 15px; }
+.section.striped {
+  background-color: #f3f2ef; }
 
 .align-left {
   text-align: left; }

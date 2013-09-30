@@ -25,11 +25,41 @@
 $stripeColor: #f3f2ef;
 $stripeTextColor: #404040;
 
+$footerColor: $stripeTextColor;
+$footerTextColor: #999;
+
 $headingText: 'Freight Sans', sans-serif;
 $bodyText: 'Proxima Nova Light', sans-serif;
 
 * {
 	box-sizing: border-box;
+}
+
+html, body {
+	height: 100%;
+}
+
+body > .ember-view {
+	height: 100%;
+	font-family: $bodyText;
+}
+
+.wrapper {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -80px; /* the bottom margin is the negative value of the footer's height */
+}
+
+footer, .push {
+	height: 80px; /* .push must be the same height as .footer */
+}
+
+footer {
+	background: $footerColor;
+	color: $footerTextColor;
+	line-height: 80px;
+	font-size: 12px;
 }
 
 body {
@@ -66,8 +96,8 @@ p {
 }
 
 .section {
-	padding-top: 30px;
-	padding-bottom: 30px;
+	padding-top: 50px;
+	padding-bottom: 50px;
 
 	h3.page-title {
 		border-bottom: 1px solid #ddd;

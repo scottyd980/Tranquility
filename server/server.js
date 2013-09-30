@@ -236,6 +236,7 @@ app.use(express.static(__dirname + '/../dist/'));
   ADD YOUR MODELS HERE
 */
 emberfyModel(app, require('./models/message')(mongoose), 'message', 'messages');
+emberfyModel(app, user, 'user', 'users');
 
 
 http.createServer(app).listen(PORT);

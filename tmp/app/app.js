@@ -169,18 +169,19 @@ Tranquility.SessionToken = Ember.Object.extend({
 //   adapter: DS.FixtureAdapter.create()
 // });
 
-
-Tranquility.ApplicationAdapter = DS.FixtureAdapter;
-
+Tranquility.ApplicationAdapter = DS.RESTAdapter.extend({
+	host: 'http://localhost:3000',
+	namespace: 'api'
+});
 
 })();
 
 (function() {
 
 Tranquility.User = DS.Model.extend({
-	id:			DS.attr('string'),
-	name:		DS.attr('string'),
+	fullname:	DS.attr('string'),
 	email:		DS.attr('string'),
+	username: 	DS.attr('string'),
 	password:	DS.attr('string')
 });
 
@@ -277,6 +278,29 @@ Tranquility.AuthLoginController = Ember.Controller.extend({
     }
   }
 
+});
+
+})();
+
+(function() {
+
+Tranquility.AuthSignupController = Ember.Controller.extend({
+	actions: {
+		signup: function() {
+			var store = this.get('store');
+
+			var user = store.createRecord('user', {
+				fullname: 	this.get('fullname'),
+				email: 		this.get('email'),
+				username: 	this.get('username'),
+				password: 	this.get('password') 
+			});
+
+			user.save();
+
+			//console.log(store);
+		}
+	}
 });
 
 })();

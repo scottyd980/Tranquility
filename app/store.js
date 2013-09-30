@@ -4,5 +4,7 @@
 //   adapter: DS.FixtureAdapter.create()
 // });
 
-
-Tranquility.ApplicationAdapter = DS.FixtureAdapter;
+Tranquility.ApplicationAdapter = DS.RESTAdapter.extend({
+	host: 'http://localhost:3000',
+	namespace: 'api'
+});

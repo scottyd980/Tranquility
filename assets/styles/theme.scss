@@ -251,6 +251,7 @@ body {
 .navbar-inverse {
   border: none;
   background: $stripeColor;
+  border: 1px solid #ddd;
 
   .navbar-toggle {
     margin-top: 13px;

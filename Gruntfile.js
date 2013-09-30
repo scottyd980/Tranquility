@@ -82,7 +82,7 @@ module.exports = function (grunt) {
     'concat',
     'cssmin',
     'uglify',
-    'copy:dev',
+    'copy:dist',
     'rev',
     'usemin'
   ]);

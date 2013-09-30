@@ -1,6 +1,6 @@
 Tranquility.User = DS.Model.extend({
-	id:			DS.attr('string'),
-	name:		DS.attr('string'),
+	fullname:	DS.attr('string'),
 	email:		DS.attr('string'),
+	username: 	DS.attr('string'),
 	password:	DS.attr('string')
 });

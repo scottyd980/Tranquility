@@ -358,7 +358,7 @@ module.exports = {
           },
           {
             expand: true,
-            src: ['assets/fonts/*'],
+            src: ['assets/styles/fonts/*'],
             dest: 'dist/'
           }
         ]
