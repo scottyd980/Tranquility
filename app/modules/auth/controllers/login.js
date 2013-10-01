@@ -20,6 +20,9 @@ Tranquility.AuthLoginController = Ember.Controller.extend({
 
         if (response.success) {
           Tranquility.AuthManager.authenticate(response.token, response.user);
+          
+          // replace above once remember me works
+          // Tranquility.AuthManager.authenticate(response.token, response.user, this.get('remember'));
 
           var attemptedTransition = self.get('attemptedTransition');
           if (attemptedTransition) {
