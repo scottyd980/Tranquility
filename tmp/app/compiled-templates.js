@@ -76,7 +76,7 @@ function program9(depth0,data) {
   hashTypes = {};
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "outlet", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push("\n\n<div class=\"push\"></div>\n</div>\n<footer>\n  <div class=\"align-center\">&copy; 2013 Tranquility.</div>\n</footer>");
+  data.buffer.push("\n\n<div class=\"push\"></div>\n</div>\n<footer>\n  <div class=\"align-center\">&copy; 2013 Tranquility</div>\n</footer>");
   return buffer;
   
 });

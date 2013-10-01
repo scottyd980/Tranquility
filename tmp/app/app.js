@@ -169,21 +169,28 @@ Tranquility.SessionToken = Ember.Object.extend({
 //   adapter: DS.FixtureAdapter.create()
 // });
 
-Tranquility.ApplicationAdapter = DS.RESTAdapter.extend({
-	host: 'http://localhost:3000',
-	namespace: 'api'
-});
+// Tranquility.ApplicationAdapter = DS.RESTAdapter.extend({
+// 	host: 'http://localhost:3000',
+// 	namespace: 'api',
+// 	serializer: DS.RESTSerializer.extend({
+// 		primaryKey: function(type) {
+// 			return '_id';
+// 		},
+// 		serializeId: function(id) {
+// 			return id.toString();
+// 		}
+// 	})
+// });
 
 })();
 
 (function() {
 
-Tranquility.User = DS.Model.extend({
-	fullname:	DS.attr('string'),
-	email:		DS.attr('string'),
-	username: 	DS.attr('string'),
-	password:	DS.attr('string')
-});
+// Tranquility.User = DS.Model.extend({
+// 	fullname:	DS.attr('string'),
+// 	email:		DS.attr('string'),
+// 	username: 	DS.attr('string')
+// });
 
 })();
 
@@ -201,9 +208,9 @@ Tranquility.AuthLoginRoute = Tranquility.AuthenticationRoute.extend({
 (function() {
 
 Tranquility.AuthSignupRoute = Tranquility.AuthenticationRoute.extend({
-	// setupController: function( controller, context ) {
-	// 	controller.reset();
-	// }
+	setupController: function( controller, context ) {
+		controller.reset();
+	}
 });
 
 })();
@@ -211,11 +218,9 @@ Tranquility.AuthSignupRoute = Tranquility.AuthenticationRoute.extend({
 (function() {
 
 Tranquility.AboutRoute = Tranquility.AuthenticatedRoute.extend({
-	model: function() {
-		var loginController = this.controllerFor('auth.login'),
-		token = loginController.get('token');
-		return this.getJSONWithToken('/about.json');
-	}
+	// setupController: function( controller, model ) {
+		
+	// }
 });
 
 })();
@@ -241,13 +246,13 @@ Tranquility.ApplicationRoute = Ember.Route.extend({
 
 Tranquility.AuthLoginController = Ember.Controller.extend({
 
-  reset: function() {
-    this.setProperties({
-      username: "",
-      password: "",
-      errorMessage: ""
-    });
-  },
+    reset: function() {
+      this.setProperties({
+        username: "",
+        password: "",
+        errorMessage: ""
+      });
+    },
 
   actions: {
     login: function() {
@@ -285,20 +290,25 @@ Tranquility.AuthLoginController = Ember.Controller.extend({
 (function() {
 
 Tranquility.AuthSignupController = Ember.Controller.extend({
+	reset: function() {
+		this.setProperties({
+			fullname: "",
+			email: "",
+			username: "",
+			password: "",
+			errorMessage: ""
+		});
+	},
+
 	actions: {
 		signup: function() {
-			var store = this.get('store');
 
-			var user = store.createRecord('user', {
-				fullname: 	this.get('fullname'),
-				email: 		this.get('email'),
-				username: 	this.get('username'),
-				password: 	this.get('password') 
-			});
-
-			user.save();
-
-			//console.log(store);
+			var user = this.getProperties('fullname', 'email', 'username', 'password');
+			$.post('/api/users', { user: user }, function(results) {
+				//App.AuthManager.authenticate(results.api_key.access_token, results.api_key.user_id);
+				router.transitionTo('index');
+		    });
+			// Login the user once saved
 		}
 	}
 });

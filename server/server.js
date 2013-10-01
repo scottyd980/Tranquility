@@ -126,7 +126,7 @@ function authorize(req, res, next) {
   }
 }
 
-app.post('/login.json', function(req, res) {
+app.post('/api/auth/login.json', function(req, res) {
 
   var body = req.body,
       username = body.username,
@@ -173,7 +173,7 @@ app.post('/login.json', function(req, res) {
   }
 });
 
-app.get('/signup.json', authorize, function(req, res) {
+app.get('/api/auth/signup.json', authorize, function(req, res) {
 
   var body = req.query,
       username = body.username,
@@ -235,8 +235,8 @@ app.use(express.static(__dirname + '/../dist/'));
 /*
   ADD YOUR MODELS HERE
 */
-emberfyModel(app, require('./models/message')(mongoose), 'message', 'messages');
-emberfyModel(app, user, 'user', 'users');
+//emberfyModel(app, require('./models/message')(mongoose), 'message', 'messages');
+//emberfyModel(app, user, 'user', 'users');
 
 
 http.createServer(app).listen(PORT);

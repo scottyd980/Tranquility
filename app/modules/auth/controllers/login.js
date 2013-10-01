@@ -1,12 +1,12 @@
 Tranquility.AuthLoginController = Ember.Controller.extend({
 
-  reset: function() {
-    this.setProperties({
-      username: "",
-      password: "",
-      errorMessage: ""
-    });
-  },
+    reset: function() {
+      this.setProperties({
+        username: "",
+        password: "",
+        errorMessage: ""
+      });
+    },
 
   actions: {
     login: function() {
