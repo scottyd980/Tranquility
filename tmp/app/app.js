@@ -218,9 +218,9 @@ Tranquility.AuthSignupRoute = Tranquility.AuthenticationRoute.extend({
 (function() {
 
 Tranquility.AboutRoute = Tranquility.AuthenticatedRoute.extend({
-	// setupController: function( controller, model ) {
-		
-	// }
+	model: function() {
+		return this.getJSONWithToken('/about.json');
+	}
 });
 
 })();
@@ -303,12 +303,13 @@ Tranquility.AuthSignupController = Ember.Controller.extend({
 	actions: {
 		signup: function() {
 
-			var user = this.getProperties('fullname', 'email', 'username', 'password');
-			$.post('/api/users', { user: user }, function(results) {
-				//App.AuthManager.authenticate(results.api_key.access_token, results.api_key.user_id);
-				router.transitionTo('index');
+			var self = this, data = this.getProperties('fullname', 'email', 'username', 'password');
+
+			$.post('/api/auth/signup.json', { user: data }, function(results) {
+				// Login the user once saved
+				Tranquility.AuthManager.authenticate(results.token, results.user_id);
+				self.transitionToRoute('index');
 		    });
-			// Login the user once saved
 		}
 	}
 });

@@ -1,5 +1,5 @@
 Tranquility.AboutRoute = Tranquility.AuthenticatedRoute.extend({
-	// setupController: function( controller, model ) {
-		
-	// }
+	model: function() {
+		return this.getJSONWithToken('/about.json');
+	}
 });

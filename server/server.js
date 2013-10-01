@@ -134,23 +134,26 @@ app.post('/api/auth/login.json', function(req, res) {
 
   if( username != null && password != null ) {
     user.findOne({ 'username' : username }, '_id email password', function(err, person){
-      if(err) {
+      if( err ) {
         res.send({
           success: false,
-          message: 'An unexpected error occurred.'
+          message: 'An unexpected error occurred. Please try again later. If this error continues to occur, please contact support.'
         });
-      } else if(person === null) {
+      } else if( person === null ) {
         res.send({
           success: false,
           message: 'Invalid username/password.'
         });
       } else {
-        bcrypt.compare(password, person.password, function(err, auth) {
+        bcrypt.compare( password, person.password, function( err, auth ) {
           if( err ) {
-            console.log(err);
-          } else if(auth === true) {
-            var tokenSecret = 'KXlZ00lIt6W9RsA9L72Wj13XeLjqjMIu';
-            var currentToken = jwt.encode({username: username}, tokenSecret);
+            res.send({
+              success: false,
+              message: 'Invalid username/password.'
+            });
+          } else if( auth === true ) {
+            //var tokenSecret = 'KXlZ00lIt6W9RsA9L72Wj13XeLjqjMIu';
+            var currentToken = jwt.encode({username: username, user_id: person._id}, tokenSecret);
             res.send({
               success: true,
               token: currentToken,
@@ -169,18 +172,19 @@ app.post('/api/auth/login.json', function(req, res) {
     res.send({
       success: false,
       message: 'Username/password are required.'
-    })
+    });
   }
 });
 
-app.get('/api/auth/signup.json', authorize, function(req, res) {
+app.post('/api/auth/signup.json', function(req, res) {
 
-  var body = req.query,
-      username = body.username,
-      email = body.email,
-      password = body.password;
+  var body = req.body,
+      fullname = body.user.fullname,
+      username = body.user.username,
+      email = body.user.email,
+      password = body.user.password;
 
-  if ( username != null && email != null && password != null ) {
+  if ( fullname != null && username != null && email != null && password != null ) {
     bcrypt.genSalt(10, function(err, salt) {
       bcrypt.hash(password, salt, function(err, hash) {
         if( err ) {
@@ -189,17 +193,18 @@ app.get('/api/auth/signup.json', authorize, function(req, res) {
             message: 'An unexpected error occurred.'
           });
         } else {
-          user.create({username: username, email: email, password: hash}, function(err, createdUser) {
+          user.create({fullname: fullname, username: username, email: email, password: hash}, function(err, person) {
             if( err ) {
               res.send({
                 success: false,
                 message: 'An unexpected error occurred.'
               });
             } else {
-              var currentToken = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+              var currentToken = jwt.encode({username: username, user_id: person._id}, tokenSecret);
               res.send({
                 success: true,
-                token: currentToken
+                token: currentToken,
+                user_id: person._id
               });
             }
           });
