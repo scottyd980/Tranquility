@@ -1,4 +1,5 @@
 Tranquility.SessionToken = Ember.Object.extend({
   token: '',
-  user: null
+  user: null,
+  // remember: false
 });
