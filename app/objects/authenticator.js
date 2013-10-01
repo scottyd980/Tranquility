@@ -11,6 +11,10 @@ Tranquility.Authenticator = Ember.Object.extend({
     var authUserId  = $.cookie('auth_user');
 
     if (!Ember.isEmpty(token) && !Ember.isEmpty(authUserId)) {
+      
+      // get expiration date from cookies and set it as third parameter
+      // var remember = $.cookie('remember');
+      // this.authenticate(token, authUserId, remember);
       this.authenticate(token, authUserId);
   }  
 },
@@ -22,6 +26,8 @@ Tranquility.Authenticator = Ember.Object.extend({
 
   // Authenticate the user. Once they are authenticated, set the access token to be submitted with all
   // future AJAX requests to the server.
+  
+  // add "remember" paramater to function definition
 authenticate: function(token, userId) {
     $.ajaxSetup({
         headers: { 'token': token }
@@ -30,6 +36,7 @@ authenticate: function(token, userId) {
     this.set('sessionToken', Tranquility.SessionToken.create({
       token: token,
       user: userId
+      // remember: remember
   }));
 },
 
@@ -51,9 +58,11 @@ reset: function() {
     if (Ember.isEmpty(this.get('sessionToken'))) {
       $.removeCookie('auth_token');
       $.removeCookie('auth_user');
+      // $.removeCookie('remember');
   } else {
       $.cookie('auth_token', this.get('sessionToken.token'));
       $.cookie('auth_user', this.get('sessionToken.user'));
+      // $.cookie('remember', this.get('sessionToken.remember'));
   }
 }.observes('sessionToken')
 });
