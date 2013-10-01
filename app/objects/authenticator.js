@@ -59,6 +59,7 @@ reset: function() {
       $.removeCookie('auth_token');
       $.removeCookie('auth_user');
       // $.removeCookie('remember');
+      // $.removeCookie('remember');
     // } else if($.cookie('remember') === true) {
     //   $.cookie('auth_token', this.get('sessionToken.token'), {expires: 365});
     //   $.cookie('auth_user', this.get('sessionToken.user'), {expires: 365});
@@ -66,7 +67,7 @@ reset: function() {
     } else {
       $.cookie('auth_token', this.get('sessionToken.token'));
       $.cookie('auth_user', this.get('sessionToken.user'));
-      // $.cookie('remember', this.get('sessionToken.remember'));
+      // $.cookie('remember', this.get('sessionToken.remember'), {expires: 365});
     }
 }.observes('sessionToken')
 });
