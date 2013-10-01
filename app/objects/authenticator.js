@@ -59,10 +59,14 @@ reset: function() {
       $.removeCookie('auth_token');
       $.removeCookie('auth_user');
       // $.removeCookie('remember');
-  } else {
+    // } else if($.cookie('remember') === true) {
+    //   $.cookie('auth_token', this.get('sessionToken.token'), {expires: 365});
+    //   $.cookie('auth_user', this.get('sessionToken.user'), {expires: 365});
+      // $.cookie('remember', true);
+    } else {
       $.cookie('auth_token', this.get('sessionToken.token'));
       $.cookie('auth_user', this.get('sessionToken.user'));
       // $.cookie('remember', this.get('sessionToken.remember'));
-  }
+    }
 }.observes('sessionToken')
 });
