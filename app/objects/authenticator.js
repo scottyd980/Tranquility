@@ -13,9 +13,8 @@ Tranquility.Authenticator = Ember.Object.extend({
     if (!Ember.isEmpty(token) && !Ember.isEmpty(authUserId)) {
       
       // get expiration date from cookies and set it as third parameter
-      // var remember = $.cookie('remember');
-      // this.authenticate(token, authUserId, remember);
-      this.authenticate(token, authUserId);
+      var remember = $.cookie('remember');
+      this.authenticate(token, authUserId, remember);
   }  
 },
 
@@ -28,15 +27,15 @@ Tranquility.Authenticator = Ember.Object.extend({
   // future AJAX requests to the server.
   
   // add "remember" paramater to function definition
-authenticate: function(token, userId) {
+authenticate: function(token, userId, remember) {
     $.ajaxSetup({
         headers: { 'token': token }
     });
     //var user = User.find(userId);
     this.set('sessionToken', Tranquility.SessionToken.create({
       token: token,
-      user: userId
-      // remember: remember
+      user: userId,
+      remember: remember
   }));
 },
 
@@ -56,18 +55,23 @@ reset: function() {
   // the user when the browser is refreshed.
   sessionTokenObserver: function() {
     if (Ember.isEmpty(this.get('sessionToken'))) {
+
       $.removeCookie('auth_token');
       $.removeCookie('auth_user');
-      // $.removeCookie('remember');
-      // $.removeCookie('remember');
-    // } else if($.cookie('remember') === true) {
-    //   $.cookie('auth_token', this.get('sessionToken.token'), {expires: 365});
-    //   $.cookie('auth_user', this.get('sessionToken.user'), {expires: 365});
-      // $.cookie('remember', true);
+      $.removeCookie('remember');
+
+    } else if( this.get('sessionToken.remember') ) {
+
+      $.cookie('auth_token', this.get('sessionToken.token'), {expires: 365});
+      $.cookie('auth_user', this.get('sessionToken.user'), {expires: 365});
+      $.cookie('remember', true, {expires: 365});
+
     } else {
+
       $.cookie('auth_token', this.get('sessionToken.token'));
       $.cookie('auth_user', this.get('sessionToken.user'));
-      // $.cookie('remember', this.get('sessionToken.remember'), {expires: 365});
+      $.cookie('remember', this.get('sessionToken.remember'));
+
     }
 }.observes('sessionToken')
 });

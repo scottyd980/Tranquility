@@ -1,9 +1,11 @@
 Tranquility.AuthLoginController = Ember.Controller.extend({
+    remember: true,
 
     reset: function() {
       this.setProperties({
         username: "",
         password: "",
+        remember: true,
         errorMessage: ""
       });
     },
@@ -19,10 +21,10 @@ Tranquility.AuthLoginController = Ember.Controller.extend({
       $.post('/api/auth/login.json', data).then(function(response) {
 
         if (response.success) {
-          Tranquility.AuthManager.authenticate(response.token, response.user);
+          // Tranquility.AuthManager.authenticate(response.token, response.user);
           
           // replace above once remember me works
-          // Tranquility.AuthManager.authenticate(response.token, response.user, this.get('remember'));
+          Tranquility.AuthManager.authenticate(response.token, response.user, self.get('remember'));
 
           var attemptedTransition = self.get('attemptedTransition');
           if (attemptedTransition) {

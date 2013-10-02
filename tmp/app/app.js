@@ -103,7 +103,10 @@ Tranquility.Authenticator = Ember.Object.extend({
     var authUserId  = $.cookie('auth_user');
 
     if (!Ember.isEmpty(token) && !Ember.isEmpty(authUserId)) {
-      this.authenticate(token, authUserId);
+      
+      // get expiration date from cookies and set it as third parameter
+      var remember = $.cookie('remember');
+      this.authenticate(token, authUserId, remember);
   }  
 },
 
@@ -114,14 +117,17 @@ Tranquility.Authenticator = Ember.Object.extend({
 
   // Authenticate the user. Once they are authenticated, set the access token to be submitted with all
   // future AJAX requests to the server.
-authenticate: function(token, userId) {
+  
+  // add "remember" paramater to function definition
+authenticate: function(token, userId, remember) {
     $.ajaxSetup({
         headers: { 'token': token }
     });
     //var user = User.find(userId);
     this.set('sessionToken', Tranquility.SessionToken.create({
       token: token,
-      user: userId
+      user: userId,
+      remember: remember
   }));
 },
 
@@ -141,14 +147,27 @@ reset: function() {
   // the user when the browser is refreshed.
   sessionTokenObserver: function() {
     if (Ember.isEmpty(this.get('sessionToken'))) {
+
       $.removeCookie('auth_token');
       $.removeCookie('auth_user');
-  } else {
+      $.removeCookie('remember');
+
+    } else if( this.get('sessionToken.remember') ) {
+
+      $.cookie('auth_token', this.get('sessionToken.token'), {expires: 365});
+      $.cookie('auth_user', this.get('sessionToken.user'), {expires: 365});
+      $.cookie('remember', true, {expires: 365});
+
+    } else {
+
       $.cookie('auth_token', this.get('sessionToken.token'));
       $.cookie('auth_user', this.get('sessionToken.user'));
-  }
+      $.cookie('remember', this.get('sessionToken.remember'));
+
+    }
 }.observes('sessionToken')
 });
+
 
 })();
 
@@ -156,8 +175,10 @@ reset: function() {
 
 Tranquility.SessionToken = Ember.Object.extend({
   token: '',
-  user: null
+  user: null,
+  remember: false
 });
+
 
 })();
 
@@ -245,11 +266,13 @@ Tranquility.ApplicationRoute = Ember.Route.extend({
 (function() {
 
 Tranquility.AuthLoginController = Ember.Controller.extend({
+    remember: true,
 
     reset: function() {
       this.setProperties({
         username: "",
         password: "",
+        remember: true,
         errorMessage: ""
       });
     },
@@ -265,7 +288,10 @@ Tranquility.AuthLoginController = Ember.Controller.extend({
       $.post('/api/auth/login.json', data).then(function(response) {
 
         if (response.success) {
-          Tranquility.AuthManager.authenticate(response.token, response.user);
+          // Tranquility.AuthManager.authenticate(response.token, response.user);
+          
+          // replace above once remember me works
+          Tranquility.AuthManager.authenticate(response.token, response.user, self.get('remember'));
 
           var attemptedTransition = self.get('attemptedTransition');
           if (attemptedTransition) {
@@ -284,6 +310,7 @@ Tranquility.AuthLoginController = Ember.Controller.extend({
   }
 
 });
+
 
 })();
 
@@ -306,17 +333,21 @@ Tranquility.AuthSignupController = Ember.Controller.extend({
 			var self = this, data = this.getProperties('fullname', 'email', 'username', 'password');
 
 			$.post('/api/auth/signup.json', { user: data }, function(results) {
+
 				// Login the user once saved
 				if(!results.success) {
 					console.log(results.message);
 				} else {
-					Tranquility.AuthManager.authenticate(results.token, results.user_id);
+					//Tranquility.AuthManager.authenticate(results.token, results.user_id);
+					Tranquility.AuthManager.authenticate(results.token, results.user_id, false);
 					self.transitionToRoute('index');
 				}
+
 		    });
 		}
 	}
 });
+
 
 })();
 

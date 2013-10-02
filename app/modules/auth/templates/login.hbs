@@ -16,6 +16,12 @@
 						<label for="password">Password</label>
 						{{input value=password type="password" id="password" class="form-control" }}
 					</div>
+					<div class="checkbox">
+						<label>
+							{{view Ember.Checkbox checkedBinding="remember"}} Remember me
+						</label>
+					</div>
+
 					{{input class="btn btn-primary" type="submit" value="Login"}}
 				</form>
 			</div>

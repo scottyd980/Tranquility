@@ -166,7 +166,13 @@ function program1(depth0,data) {
     'class': ("form-control")
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers.input || depth0.input),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
-  data.buffer.push("\n					</div>\n					");
+  data.buffer.push("\n					</div>\n					<div class=\"checkbox\">\n						<label>\n							");
+  hashContexts = {'checkedBinding': depth0};
+  hashTypes = {'checkedBinding': "STRING"};
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "Ember.Checkbox", {hash:{
+    'checkedBinding': ("remember")
+  },contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(" Remember me\n						</label>\n					</div>\n\n					");
   hashContexts = {'class': depth0,'type': depth0,'value': depth0};
   hashTypes = {'class': "STRING",'type': "STRING",'value': "STRING"};
   options = {hash:{
