@@ -52,44 +52,6 @@ Tranquility.AuthenticationRoute = Ember.Route.extend({
 
 (function() {
 
-Tranquility.TodoItemComponent = Ember.Component.extend({
-  item: null,
-
-  keyDown: function (event) {
-    if (event.which === 13) {
-      event.preventDefault();
-
-      var item = this.get('item'),
-        editable = this.$('.todo-editable');
-      item.set('name', editable.text());
-      
-      item.save();
-      
-
-      editable.prop('contenteditable', false).blur();
-    }
-  },
-
-  actions: {
-    edit: function () {
-      this.$('.todo-editable').prop('contenteditable', true).focus();
-    },
-
-    delete: function () {
-      var item = this.get('item');
-      
-      item.deleteRecord();
-      //item.save();
-      
-    }
-  }
-});
-
-
-})();
-
-(function() {
-
 Tranquility.Authenticator = Ember.Object.extend({
 
   // Load the current user if the cookies exist and is valid
@@ -372,18 +334,6 @@ Tranquility.ApplicationController = Ember.Controller.extend({
 (function() {
 
 Tranquility.IndexView = Ember.View.extend({
-});
-
-})();
-
-(function() {
-
-Ember.Handlebars.registerBoundHelper('wordCount', function (value) {
-  var ret;
-  if (typeof value === 'string' && value.length) {
-    return ((ret = value.trim().match(/\s+/g).length) > 0) ? (ret + 1) : 1;
-  }
-  return '0';
 });
 
 })();

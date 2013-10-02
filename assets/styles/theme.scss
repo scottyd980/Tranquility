@@ -73,8 +73,15 @@ body {
   border: none;
 }
 
-.btn i {
-  padding-right: 5px;
+.btn {
+
+  &:focus, &:active {
+    outline: none;
+  }
+
+  i {
+    padding-right: 5px;
+  }
 }
 
 .btn-default,
@@ -182,6 +189,13 @@ body {
   background-color: $primaryColorLight;
 }
 
+.btn-primary:focus,
+.btn-primary.focus,
+.btn-primary:active,
+.btn-primary.active {
+  background-color: $primaryColorLighter;
+}
+
 .btn-success {
   background-color: $successColor;
 }
@@ -189,6 +203,13 @@ body {
 .btn-success:hover,
 .btn-success.hover {
   background-color: $successColorLight;
+}
+
+.btn-success:focus,
+.btn-success.focus,
+.btn-success:active,
+.btn-success.active {
+  background-color: $successColorLighter;
 }
 
 .btn-warning {
@@ -200,6 +221,13 @@ body {
   background-color: $warningColorLight;
 }
 
+.btn-warning:focus,
+.btn-warning.focus,
+.btn-warning:active,
+.btn-warning.active {
+  background-color: $warningColorLighter;
+}
+
 .btn-danger {
   background-color: $dangerColor;
 }
@@ -209,6 +237,13 @@ body {
   background-color: $dangerColorLight;
 }
 
+.btn-danger:focus,
+.btn-danger.focus,
+.btn-danger:active,
+.btn-danger.active {
+  background-color: $dangerColorLighter;
+}
+
 .btn-info {
  background-color: $infoColor;
 }
@@ -216,6 +251,13 @@ body {
 .btn-info:hover,
 .btn-info.hover {
   background-color: $infoColorLight;
+}
+
+.btn-info:focus,
+.btn-info.focus,
+.btn-info:active,
+.btn-info.active {
+  background-color: $infoColorLighter;
 }
 
 .thumbnail,
@@ -285,7 +327,7 @@ body {
 .navbar-inverse .navbar-nav > li > a {
   color: $stripeTextColor;
 
-  &:hover {
+  &:hover, &:active, &:focus {
     color: $stripeTextColor;
   }
 }

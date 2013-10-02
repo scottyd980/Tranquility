@@ -174,7 +174,7 @@ app.post('/api/auth/login.json', function(req, res) {
             });
           }
         });
-        
+
       }
     });
   } else {
@@ -212,6 +212,7 @@ app.post('/api/auth/signup.json', function(req, res) {
         });
       }
     });
+    
   } else {
     res.send({
       success: false,
