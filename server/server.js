@@ -153,14 +153,14 @@ app.post('/api/auth/login.json', function(req, res) {
           message: 'Invalid username/password.'
         });
       } else {
-        bcrypt.compare( password, person.password, function( err, auth ) {
+
+        person.comparePassword(password, function(err, isMatch) {
           if( err ) {
             res.send({
               success: false,
               message: 'Invalid username/password.'
             });
-          } else if( auth === true ) {
-            //var tokenSecret = 'KXlZ00lIt6W9RsA9L72Wj13XeLjqjMIu';
+          } else if( isMatch === true ) {
             var currentToken = jwt.encode({username: username, user_id: person._id}, tokenSecret);
             res.send({
               success: true,
@@ -174,6 +174,7 @@ app.post('/api/auth/login.json', function(req, res) {
             });
           }
         });
+        
       }
     });
   } else {
@@ -192,33 +193,24 @@ app.post('/api/auth/signup.json', function(req, res) {
       email = body.user.email,
       password = body.user.password;
 
+  // Can remove this once figuring out how to pass back mongoose validation errors to the front end.
   if ( fullname != null && username != null && email != null && password != null ) {
-    bcrypt.genSalt(10, function(err, salt) {
-      bcrypt.hash(password, salt, function(err, hash) {
-        if( err ) {
-          res.send({
-            success: false,
-            message: 'An unexpected error occurred.'
-          });
-        } else {
-          user.create({fullname: fullname, username: username, email: email, password: hash}, function(err, person) {
-            if( err ) {
-              console.log(err);
-              res.send({
-                success: false,
-                message: 'An unexpected error occurred.'
-              });
-            } else {
-              var currentToken = jwt.encode({username: username, user_id: person._id}, tokenSecret);
-              res.send({
-                success: true,
-                token: currentToken,
-                user_id: person._id
-              });
-            }
-          });
-        }
-      });
+    
+    user.create({fullname: fullname, username: username, email: email, password: password}, function(err, person) {
+      if( err ) {
+        console.log(err);
+        res.send({
+          success: false,
+          message: 'An unexpected error occurred.'
+        });
+      } else {
+        var currentToken = jwt.encode({username: username, user_id: person._id}, tokenSecret);
+        res.send({
+          success: true,
+          token: currentToken,
+          user_id: person._id
+        });
+      }
     });
   } else {
     res.send({
