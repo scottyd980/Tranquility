@@ -195,6 +195,7 @@ app.post('/api/auth/signup.json', function(req, res) {
         } else {
           user.create({fullname: fullname, username: username, email: email, password: hash}, function(err, person) {
             if( err ) {
+              console.log(err);
               res.send({
                 success: false,
                 message: 'An unexpected error occurred.'

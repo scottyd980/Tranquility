@@ -262,7 +262,7 @@ Tranquility.AuthLoginController = Ember.Controller.extend({
       // Clear out any error messages.
       this.set('errorMessage', null);
 
-      $.post('/login.json', data).then(function(response) {
+      $.post('/api/auth/login.json', data).then(function(response) {
 
         if (response.success) {
           Tranquility.AuthManager.authenticate(response.token, response.user);
@@ -307,8 +307,12 @@ Tranquility.AuthSignupController = Ember.Controller.extend({
 
 			$.post('/api/auth/signup.json', { user: data }, function(results) {
 				// Login the user once saved
-				Tranquility.AuthManager.authenticate(results.token, results.user_id);
-				self.transitionToRoute('index');
+				if(!results.success) {
+					console.log(results.message);
+				} else {
+					Tranquility.AuthManager.authenticate(results.token, results.user_id);
+					self.transitionToRoute('index');
+				}
 		    });
 		}
 	}
