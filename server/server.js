@@ -122,7 +122,15 @@ function authorize(req, res, next) {
     return next(new NotAuthorized('You must be logged in to access this content.'));
   } else {
     var decoded = jwt.decode(userToken, tokenSecret);
-    next();
+    user.findOne({ 'username' : decoded.username, '_id' : decoded.user_id }, function(err, person){
+      if( err ) {
+        return next(new NotAuthorized('You must be logged in to access this content.'));
+      } else if( person === null ){
+        return next(new NotAuthorized('There was a problem with your account information. Please login again.'))
+      } else {
+        next();
+      }
+    });
   }
 }
 
