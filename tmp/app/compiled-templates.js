@@ -175,7 +175,14 @@ function program1(depth0,data) {
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "signup", {hash:{
     'on': ("submit")
   },contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push(" role=\"form\">\n						<div class=\"form-group\">\n							<label for=\"fullname\">Full Name</label>\n							");
+  data.buffer.push(" role=\"form\">\n						<div ");
+  hashContexts = {'class': depth0};
+  hashTypes = {'class': "STRING"};
+  options = {hash:{
+    'class': (":form-group fullnameError:has-error")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['bind-attr'] || depth0['bind-attr']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "bind-attr", options))));
+  data.buffer.push(">\n							<label for=\"fullname\">Full Name</label>\n							");
   hashContexts = {'value': depth0,'type': depth0,'id': depth0,'class': depth0};
   hashTypes = {'value': "ID",'type': "STRING",'id': "STRING",'class': "STRING"};
   options = {hash:{
@@ -185,7 +192,18 @@ function program1(depth0,data) {
     'class': ("form-control")
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers.input || depth0.input),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
-  data.buffer.push("\n						</div>\n						<div class=\"form-group\">\n							<label for=\"email\">Email Address</label>\n							");
+  data.buffer.push("\n							<span class=\"help-block\">");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "fullnameError", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("</span>\n						</div>\n						<div ");
+  hashContexts = {'class': depth0};
+  hashTypes = {'class': "STRING"};
+  options = {hash:{
+    'class': (":form-group emailError:has-error")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['bind-attr'] || depth0['bind-attr']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "bind-attr", options))));
+  data.buffer.push(">\n							<label for=\"email\">Email Address</label>\n							");
   hashContexts = {'value': depth0,'type': depth0,'id': depth0,'class': depth0};
   hashTypes = {'value': "ID",'type': "STRING",'id': "STRING",'class': "STRING"};
   options = {hash:{
@@ -195,7 +213,18 @@ function program1(depth0,data) {
     'class': ("form-control")
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers.input || depth0.input),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
-  data.buffer.push("\n						</div>\n						<div class=\"form-group\">\n							<label for=\"username\">Username</label>\n							");
+  data.buffer.push("\n							<span class=\"help-block\">");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "emailError", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("</span>\n						</div>\n						<div ");
+  hashContexts = {'class': depth0};
+  hashTypes = {'class': "STRING"};
+  options = {hash:{
+    'class': (":form-group usernameError:has-error")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['bind-attr'] || depth0['bind-attr']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "bind-attr", options))));
+  data.buffer.push(">\n							<label for=\"username\">Username</label>\n							");
   hashContexts = {'value': depth0,'type': depth0,'id': depth0,'class': depth0};
   hashTypes = {'value': "ID",'type': "STRING",'id': "STRING",'class': "STRING"};
   options = {hash:{
@@ -205,7 +234,18 @@ function program1(depth0,data) {
     'class': ("form-control")
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers.input || depth0.input),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
-  data.buffer.push("\n						</div>\n						<div class=\"form-group\">\n							<label for=\"password\">Password</label>\n							");
+  data.buffer.push("\n							<span class=\"help-block\">");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "usernameError", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("</span>\n						</div>\n						<div ");
+  hashContexts = {'class': depth0};
+  hashTypes = {'class': "STRING"};
+  options = {hash:{
+    'class': (":form-group passwordError:has-error")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['bind-attr'] || depth0['bind-attr']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "bind-attr", options))));
+  data.buffer.push(">\n							<label for=\"password\">Password</label>\n							");
   hashContexts = {'value': depth0,'type': depth0,'id': depth0,'class': depth0};
   hashTypes = {'value': "ID",'type': "STRING",'id': "STRING",'class': "STRING"};
   options = {hash:{
@@ -215,7 +255,11 @@ function program1(depth0,data) {
     'class': ("form-control")
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers.input || depth0.input),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
-  data.buffer.push("\n						</div>\n						");
+  data.buffer.push("\n							<span class=\"help-block\">");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "passwordError", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("</span>\n						</div>\n						");
   hashContexts = {'class': depth0,'type': depth0,'value': depth0};
   hashTypes = {'class': "STRING",'type': "STRING",'value': "STRING"};
   options = {hash:{
