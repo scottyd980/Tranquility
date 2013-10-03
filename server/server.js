@@ -198,10 +198,10 @@ app.post('/api/auth/signup.json', function(req, res) {
     
     user.create({fullname: fullname, username: username, email: email, password: password}, function(err, person) {
       if( err ) {
-        console.log(err);
         res.send({
           success: false,
-          message: 'An unexpected error occurred.'
+          message: 'An unexpected error occurred.',
+          err: err
         });
       } else {
         var currentToken = jwt.encode({username: username, user_id: person._id}, tokenSecret);

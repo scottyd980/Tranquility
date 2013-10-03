@@ -1,5 +1,6 @@
 module.exports = function(mongoose) {
 	var bcrypt = require('bcrypt'),
+		uniqueValidator = require('mongoose-unique-validator'),
 		Schema = mongoose.Schema;
 
 	var UserSchema = new Schema({
@@ -9,6 +10,9 @@ module.exports = function(mongoose) {
 		password:  { type: String, required: true },
 		createDate: { type: Date, default: Date.now }
 	});
+
+	UserSchema.path('username').index({ unique: true });
+	UserSchema.path('email').index({ unique: true });
 
 	UserSchema.methods.comparePassword = function(candidatePassword, callback) {
 	    bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
@@ -35,6 +39,8 @@ module.exports = function(mongoose) {
       	});
 
 	});
+
+	UserSchema.plugin(uniqueValidator, { mongoose: mongoose });
 
 	var User = mongoose.model('User', UserSchema);
 
