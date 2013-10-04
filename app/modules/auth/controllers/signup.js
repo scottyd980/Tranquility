@@ -4,7 +4,14 @@ Tranquility.AuthSignupController = Ember.Controller.extend({
 			fullname: "",
 			email: "",
 			username: "",
-			password: "",
+			password: ""
+		});
+
+		this.resetErrors();
+	},
+
+	resetErrors: function() {
+		this.setProperties({
 			errorMessage: "",
 			fullnameError: "",
 			emailError: "",
@@ -17,6 +24,8 @@ Tranquility.AuthSignupController = Ember.Controller.extend({
 		signup: function() {
 
 			var self = this, data = this.getProperties('fullname', 'email', 'username', 'password');
+
+			this.resetErrors();
 
 			$.post('/api/auth/signup', { user: data }, function(results) {
 
