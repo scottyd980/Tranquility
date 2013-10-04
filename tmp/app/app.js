@@ -390,6 +390,7 @@ Tranquility.IndexView = Ember.View.extend({
 
 Tranquility.Router.map(function() {
   this.route('about', { path: '/about' });
+  this.route('pricing', { path: '/pricing' });
   this.resource('auth', function() {
   	this.route('login', { path: '/login' });
   	this.route('logout', { path: '/logout' });

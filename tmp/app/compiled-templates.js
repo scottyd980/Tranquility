@@ -39,12 +39,18 @@ function program6(depth0,data) {
   hashTypes = {};
   hashContexts = {};
   options = {hash:{},inverse:self.noop,fn:self.program(7, program7, data),contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
-  stack2 = ((stack1 = helpers['link-to'] || depth0['link-to']),stack1 ? stack1.call(depth0, "auth.signup", options) : helperMissing.call(depth0, "link-to", "auth.signup", options));
+  stack2 = ((stack1 = helpers['link-to'] || depth0['link-to']),stack1 ? stack1.call(depth0, "pricing", options) : helperMissing.call(depth0, "link-to", "pricing", options));
   if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
   data.buffer.push("</li>\n          <li>");
   hashTypes = {};
   hashContexts = {};
   options = {hash:{},inverse:self.noop,fn:self.program(9, program9, data),contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  stack2 = ((stack1 = helpers['link-to'] || depth0['link-to']),stack1 ? stack1.call(depth0, "auth.signup", options) : helperMissing.call(depth0, "link-to", "auth.signup", options));
+  if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
+  data.buffer.push("</li>\n          <li>");
+  hashTypes = {};
+  hashContexts = {};
+  options = {hash:{},inverse:self.noop,fn:self.program(11, program11, data),contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   stack2 = ((stack1 = helpers['link-to'] || depth0['link-to']),stack1 ? stack1.call(depth0, "auth.login", options) : helperMissing.call(depth0, "link-to", "auth.login", options));
   if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
   data.buffer.push("</li>\n        ");
@@ -53,10 +59,16 @@ function program6(depth0,data) {
 function program7(depth0,data) {
   
   
-  data.buffer.push("Sign Up");
+  data.buffer.push("Pricing");
   }
 
 function program9(depth0,data) {
+  
+  
+  data.buffer.push("Sign Up");
+  }
+
+function program11(depth0,data) {
   
   
   data.buffer.push("Login");
@@ -324,19 +336,10 @@ function program9(depth0,data) {
 Ember.TEMPLATES["about"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '', hashTypes, hashContexts, escapeExpression=this.escapeExpression;
+  
 
 
-  data.buffer.push("<h3>Hello World!</h3>\n<p>");
-  hashTypes = {};
-  hashContexts = {};
-  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "someText", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push("</p>\n<p>Word Count: ");
-  hashTypes = {};
-  hashContexts = {};
-  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "someText", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push("</p>\n");
-  return buffer;
+  data.buffer.push("<section class=\"section\">\n	<div class=\"container\">\n	  <div class=\"row\">\n	    <div class=\"col-sm-6 col-md-3\">\n			<div class=\"panel panel-pricing panel-primary\">\n				<div class=\"panel-heading\">\n				  <h3 class=\"panel-title\">Basic</h3>\n				</div>\n				<div class=\"panel-body\">\n					<h4>$5 <sup>/ month</sup></h4>\n				 	<p><span class=\"icon icon-ok\"></span> 1 active project</p>\n				 	<p><span class=\"icon icon-ok\"></span> 5 members</p>\n				 	<p><span class=\"icon icon-ok\"></span> 1 GB file storage</p>\n				 	<h5>All plans include:</h5>\n				 	<p class=\"all\"><span class=\"icon icon-ok\"></span> SSL encrpytion</p>\n				 	<p class=\"all\"><span class=\"icon icon-ok\"></span> Database backups</p>\n				 	<p class=\"all\"><span class=\"icon icon-ok\"></span> Easy data export</p>\n				 	<hr>\n				 	<a class=\"btn btn-primary\">Sign Up</a>\n				</div>\n			</div>\n		</div>\n		<div class=\"col-sm-6 col-md-3\">\n			<div class=\"panel panel-pricing panel-primary\">\n				<div class=\"panel-heading\">\n				  <h3 class=\"panel-title\">Standard</h3>\n				</div>\n				<div class=\"panel-body\">\n					<h4>$15 <sup>/ month</sup></h4>\n				 	<p><span class=\"icon icon-ok\"></span> 10 active projects</p>\n				 	<p><span class=\"icon icon-ok\"></span> Unlimited members</p>\n				 	<p><span class=\"icon icon-ok\"></span> 5 GB file storage</p>\n				 	<h5>All plans include:</h5>\n				 	<p class=\"all\"><span class=\"icon icon-ok\"></span> SSL encrpytion</p>\n				 	<p class=\"all\"><span class=\"icon icon-ok\"></span> Database backups</p>\n				 	<p class=\"all\"><span class=\"icon icon-ok\"></span> Easy data export</p>\n				 	<hr>\n				 	<a class=\"btn btn-primary\">Sign Up</a>\n				</div>\n			</div>\n		</div>\n		<div class=\"col-sm-6 col-md-3\">\n			<div class=\"panel panel-pricing panel-success\">\n				<div class=\"panel-heading\">\n				  <h3 class=\"panel-title\">Advanced</h3>\n				</div>\n				<div class=\"panel-body\">\n					<h4>$25 <sup>/ month</sup></h4>\n				 	<p><span class=\"icon icon-ok\"></span> 50 active projects</p>\n				 	<p><span class=\"icon icon-ok\"></span> Unlimited members</p>\n				 	<p><span class=\"icon icon-ok\"></span> 10 GB file storage</p>\n				 	<h5>All plans include:</h5>\n				 	<p class=\"all\"><span class=\"icon icon-ok\"></span> SSL encrpytion</p>\n				 	<p class=\"all\"><span class=\"icon icon-ok\"></span> Database backups</p>\n				 	<p class=\"all\"><span class=\"icon icon-ok\"></span> Easy data export</p>\n				 	<hr>\n				 	<a class=\"btn btn-success\">Sign Up</a>\n				</div>\n			</div>\n		</div>\n		<div class=\"col-sm-6 col-md-3\">\n			<div class=\"panel panel-pricing panel-primary\">\n				<div class=\"panel-heading\">\n				  <h3 class=\"panel-title\">Professional</h3>\n				</div>\n				<div class=\"panel-body\">\n					<h4>$50 <sup>/ month</sup></h4>\n				 	<p><span class=\"icon icon-ok\"></span> 100 active projects</p>\n				 	<p><span class=\"icon icon-ok\"></span> Unlimited members</p>\n				 	<p><span class=\"icon icon-ok\"></span> 30 GB file storage</p>\n				 	<h5>All plans include:</h5>\n				 	<p class=\"all\"><span class=\"icon icon-ok\"></span> SSL encrpytion</p>\n				 	<p class=\"all\"><span class=\"icon icon-ok\"></span> Database backups</p>\n				 	<p class=\"all\"><span class=\"icon icon-ok\"></span> Easy data export</p>\n				 	<hr>\n				 	<a class=\"btn btn-primary\">Sign Up</a>\n				</div>\n			</div>\n		</div>\n	  </div>\n	</div>\n</section>\n");
   
 });
 
@@ -349,5 +352,15 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   data.buffer.push("<section class=\"section\">\n	<div class=\"container\">\n	  <div class=\"row front\">\n	    <div class=\"col-md-6\">\n	    	<h2>Stabilize Your Workflow.</h2>\n	    	<p class=\"callout\">\n	    		Aenean lacinia bibendum nulla sed consectetur. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Aenean lacinia bibendum nulla sed consectetur.\n	    	</p>\n	    	<p class=\"callout\">\n		    	Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam quis risus eget urna mollis ornare vel eu leo. Maecenas sed diam eget risus varius blandit sit amet non magna. Cras mattis consectetur purus sit amet fermentum. \n		    </p>\n	    </div>\n	    <div class=\"col-md-6 align-right visible-md visible-lg\">\n	    	<img src=\"assets/img/mac.png\" />\n	    </div>\n	  </div>\n	</div>\n</section>\n<section class=\"section striped\">\n	<div class=\"container\">\n	  <div class=\"row points\">\n	    <div class=\"col-md-4 point-block align-center\">\n	    	<i class=\"icon-group icon-4x\"></i>\n	    	<h4>Easy Collaboration</h4>\n	    	<p>Watching the progress of your group and seeing their actions in real-time has never been easier.</p>\n	    </div>\n	    <div class=\"col-md-4 point-block align-center\">\n	    	<i class=\"icon-bug icon-4x\"></i>\n	    	<h4>Intuitive Issue Tracking</h4>\n	    	<p>Create and view issues easily and quickly from a simple dashboard.</p>\n	    </div>\n	    <div class=\"col-md-4 point-block align-center\">\n	    	<i class=\"icon-envelope icon-4x\"></i>\n	    	<h4>Automatic Updates</h4>\n	    	<p>A simple click and you'll receive updates by email on the status of your project any time you choose.</p>\n	    </div>\n	  </div>\n	</div>\n</section>\n<section class=\"section\">\n	<div class=\"container\">\n	  <div class=\"row front\">\n	    <div class=\"col-lg-6 align-left visible-lg\">\n	    	<img src=\"assets/img/laptop.png\" />\n	    </div>\n	    <div class=\"col-lg-6\">\n	    	<h2>Organize Your Projects.</h2>\n	    	<p class=\"callout\">\n	    		Aenean lacinia bibendum nulla sed consectetur. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam.\n	    	</p>\n	    	<p class=\"callout\">\n		    	Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam quis risus eget urna mollis ornare vel eu leo. Maecenas sed diam eget risus varius blandit sit amet non magna. Cras mattis consectetur purus sit amet fermentum. \n		    </p>\n	    </div>\n	  </div>\n	</div>\n</section>\n");
   data.buffer.push("\n");
   return buffer;
+  
+});
+
+Ember.TEMPLATES["pricing"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  
+
+
+  data.buffer.push("<section class=\"section\">\n	<div class=\"container\">\n	  <div class=\"row\">\n	    <div class=\"col-sm-6 col-md-3\">\n			<div class=\"panel panel-pricing panel-primary\">\n				<div class=\"panel-heading\">\n				  <h3 class=\"panel-title\">Basic</h3>\n				</div>\n				<div class=\"panel-body\">\n					<h4>$5 <sup>/ month</sup></h4>\n				 	<p><span class=\"icon icon-ok\"></span> 1 active project</p>\n				 	<p><span class=\"icon icon-ok\"></span> 5 members</p>\n				 	<p><span class=\"icon icon-ok\"></span> 1 GB file storage</p>\n				 	<h5>All plans include:</h5>\n				 	<p class=\"all\"><span class=\"icon icon-ok\"></span> SSL encrpytion</p>\n				 	<p class=\"all\"><span class=\"icon icon-ok\"></span> Database backups</p>\n				 	<p class=\"all\"><span class=\"icon icon-ok\"></span> Easy data export</p>\n				 	<hr>\n				 	<a class=\"btn btn-primary\">Sign Up</a>\n				</div>\n			</div>\n		</div>\n		<div class=\"col-sm-6 col-md-3\">\n			<div class=\"panel panel-pricing panel-primary\">\n				<div class=\"panel-heading\">\n				  <h3 class=\"panel-title\">Standard</h3>\n				</div>\n				<div class=\"panel-body\">\n					<h4>$15 <sup>/ month</sup></h4>\n				 	<p><span class=\"icon icon-ok\"></span> 10 active projects</p>\n				 	<p><span class=\"icon icon-ok\"></span> Unlimited members</p>\n				 	<p><span class=\"icon icon-ok\"></span> 5 GB file storage</p>\n				 	<h5>All plans include:</h5>\n				 	<p class=\"all\"><span class=\"icon icon-ok\"></span> SSL encrpytion</p>\n				 	<p class=\"all\"><span class=\"icon icon-ok\"></span> Database backups</p>\n				 	<p class=\"all\"><span class=\"icon icon-ok\"></span> Easy data export</p>\n				 	<hr>\n				 	<a class=\"btn btn-primary\">Sign Up</a>\n				</div>\n			</div>\n		</div>\n		<div class=\"col-sm-6 col-md-3\">\n			<div class=\"panel panel-pricing panel-success\">\n				<div class=\"panel-heading\">\n				  <h3 class=\"panel-title\">Advanced</h3>\n				</div>\n				<div class=\"panel-body\">\n					<h4>$25 <sup>/ month</sup></h4>\n				 	<p><span class=\"icon icon-ok\"></span> 50 active projects</p>\n				 	<p><span class=\"icon icon-ok\"></span> Unlimited members</p>\n				 	<p><span class=\"icon icon-ok\"></span> 10 GB file storage</p>\n				 	<h5>All plans include:</h5>\n				 	<p class=\"all\"><span class=\"icon icon-ok\"></span> SSL encrpytion</p>\n				 	<p class=\"all\"><span class=\"icon icon-ok\"></span> Database backups</p>\n				 	<p class=\"all\"><span class=\"icon icon-ok\"></span> Easy data export</p>\n				 	<hr>\n				 	<a class=\"btn btn-success\">Sign Up</a>\n				</div>\n			</div>\n		</div>\n		<div class=\"col-sm-6 col-md-3\">\n			<div class=\"panel panel-pricing panel-primary\">\n				<div class=\"panel-heading\">\n				  <h3 class=\"panel-title\">Professional</h3>\n				</div>\n				<div class=\"panel-body\">\n					<h4>$50 <sup>/ month</sup></h4>\n				 	<p><span class=\"icon icon-ok\"></span> 100 active projects</p>\n				 	<p><span class=\"icon icon-ok\"></span> Unlimited members</p>\n				 	<p><span class=\"icon icon-ok\"></span> 30 GB file storage</p>\n				 	<h5>All plans include:</h5>\n				 	<p class=\"all\"><span class=\"icon icon-ok\"></span> SSL encrpytion</p>\n				 	<p class=\"all\"><span class=\"icon icon-ok\"></span> Database backups</p>\n				 	<p class=\"all\"><span class=\"icon icon-ok\"></span> Easy data export</p>\n				 	<hr>\n				 	<a class=\"btn btn-primary\">Sign Up</a>\n				</div>\n			</div>\n		</div>\n	  </div>\n	</div>\n</section>\n");
   
 });

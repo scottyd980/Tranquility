@@ -113,6 +113,9 @@ body {
   padding: 0px 15px; }
 .navbar-brand img {
   padding-bottom: 5px; }
+.navbar-brand:focus {
+  outline: none;
+  color: #404040; }
 
 .navbar-inverse {
   border: none;

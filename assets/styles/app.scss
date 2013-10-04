@@ -209,7 +209,7 @@ p {
 	text-align: center;
 
 	&.panel-success {
-		.glyphicon {
+		.icon {
 			color: $successColor;
 		}
 
@@ -225,7 +225,7 @@ p {
 	}
 
 	&.panel-primary {
-		.glyphicon {
+		.icon {
 			color: $primaryColor;
 		}
 
@@ -267,7 +267,7 @@ p {
 		}
 
 		p {
-			.glyphicon {
+			.icon {
 				padding-right: 10px;
 			}
 

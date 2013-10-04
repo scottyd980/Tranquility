@@ -288,6 +288,11 @@ body {
   img {
     padding-bottom: 5px;
   }
+
+  &:focus {
+    outline: none;
+    color: $stripeTextColor;
+  }
 }
 
 .navbar-inverse {
@@ -307,7 +312,7 @@ body {
     &:focus, &:hover {
       background: none;
       outline: none;
-      
+
       .icon-bar {
         background-color: $stripeTextHoverColor;
       }
