@@ -18,7 +18,7 @@ Tranquility.AuthLoginController = Ember.Controller.extend({
       // Clear out any error messages.
       this.set('errorMessage', null);
 
-      $.post('/api/auth/login.json', data).then(function(response) {
+      $.post('/api/auth/login', data).then(function(response) {
 
         if (response.success) {
           // Tranquility.AuthManager.authenticate(response.token, response.user);

@@ -24,6 +24,7 @@
 
 $stripeColor: #f3f2ef;
 $stripeTextColor: #404040;
+$stripeAccentColor: darken($stripeColor, 20%);
 
 $footerColor: $stripeTextColor;
 $footerTextColor: #999;
@@ -124,4 +125,57 @@ p {
 
 .align-center {
 	text-align: center;
+}
+
+.points {
+	.point-block {
+		border-right: 1px solid $stripeAccentColor;
+
+		i {
+			display: block;
+			margin-bottom: 20px;
+		}
+
+		h4 {
+			margin-bottom: 15px;
+		}
+
+		p {
+			font-size: 14px;
+		}
+
+		&:last-child {
+			border-right: none;
+		}
+	}
+}
+
+@media (max-width: 991px) {
+	.points {
+		.point-block {
+			border-right: none;
+			border-bottom: 1px solid $stripeAccentColor;
+			padding-bottom: 30px;
+			margin-bottom: 30px;
+
+			i {
+				display: block;
+				margin-bottom: 20px;
+			}
+
+			h4 {
+				margin-bottom: 15px;
+			}
+
+			p {
+				font-size: 14px;
+			}
+
+			&:last-child {
+				border-bottom: none;
+				padding-bottom: 0px;
+				margin-bottom: 0px;
+			}
+		}
+	}
 }

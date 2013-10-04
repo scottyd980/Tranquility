@@ -134,7 +134,7 @@ function authorize(req, res, next) {
   }
 }
 
-app.post('/api/auth/login.json', function(req, res) {
+app.post('/api/auth/login', function(req, res) {
 
   var body = req.body,
       username = body.username,
@@ -185,7 +185,7 @@ app.post('/api/auth/login.json', function(req, res) {
   }
 });
 
-app.post('/api/auth/signup.json', function(req, res) {
+app.post('/api/auth/signup', function(req, res) {
 
   var body = req.body,
       fullname = body.user.fullname,

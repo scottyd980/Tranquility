@@ -18,7 +18,7 @@ Tranquility.AuthSignupController = Ember.Controller.extend({
 
 			var self = this, data = this.getProperties('fullname', 'email', 'username', 'password');
 
-			$.post('/api/auth/signup.json', { user: data }, function(results) {
+			$.post('/api/auth/signup', { user: data }, function(results) {
 
 				// Login the user once saved
 				if(!results.success) {

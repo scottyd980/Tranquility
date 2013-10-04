@@ -81,3 +81,33 @@ p.callout {
 
 .align-center {
   text-align: center; }
+
+.points .point-block {
+  border-right: 1px solid #c7c3b5; }
+.points .point-block i {
+  display: block;
+  margin-bottom: 20px; }
+.points .point-block h4 {
+  margin-bottom: 15px; }
+.points .point-block p {
+  font-size: 14px; }
+.points .point-block:last-child {
+  border-right: none; }
+
+@media (max-width: 991px) {
+  .points .point-block {
+    border-right: none;
+    border-bottom: 1px solid #c7c3b5;
+    padding-bottom: 30px;
+    margin-bottom: 30px; }
+  .points .point-block i {
+    display: block;
+    margin-bottom: 20px; }
+  .points .point-block h4 {
+    margin-bottom: 15px; }
+  .points .point-block p {
+    font-size: 14px; }
+  .points .point-block:last-child {
+    border-bottom: none;
+    padding-bottom: 0px;
+    margin-bottom: 0px; } }
