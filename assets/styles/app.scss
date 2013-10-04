@@ -1,3 +1,62 @@
+$defaultColor: #ddd;
+$defaultColorText: #333;
+$defaultColorLight: lighten($defaultColor, 5%);
+$defaultColorLighter: lighten($defaultColor, 10%);
+$defaultColorLightest: lighten($defaultColor, 20%);
+$defaultColorDark: darken($defaultColor, 5%);
+$defaultColorDarker: darken($defaultColor, 10%);
+$defaultColorDarkest: darken($defaultColor, 20%);
+
+$primaryColor: #00acec;
+$primaryColorText: #fff;
+$primaryColorLight: lighten($primaryColor, 5%);
+$primaryColorLighter: lighten($primaryColor, 10%);
+$primaryColorLightest: lighten($primaryColor, 20%);
+$primaryColorDark: darken($primaryColor, 5%);
+$primaryColorDarker: darken($primaryColor, 10%);
+$primaryColorDarkest: darken($primaryColor, 20%);
+
+$successColor: #49bf67;
+$successColorText: #fff;
+$successColorLight: lighten($successColor, 5%);
+$successColorLighter: lighten($successColor, 10%);
+$successColorLightest: lighten($successColor, 20%);
+$successColorDark: darken($successColor, 5%);
+$successColorDarker: darken($successColor, 10%);
+$successColorDarkest: darken($successColor, 40%);
+
+$infoColor: #9564e2;
+$infoColorText: #fff;
+$infoColorLight: lighten($infoColor, 5%);
+$infoColorLighter: lighten($infoColor, 10%);
+$infoColorLightest: lighten($infoColor, 20%);
+$infoColorDark: darken($infoColor, 5%);
+$infoColorDarker: darken($infoColor, 10%);
+$infoColorDarkest: darken($infoColor, 40%);
+
+$warningColor: #f8a326;
+$warningColorText: #fff;
+$warningColorLight: lighten($warningColor, 5%);
+$warningColorLighter: lighten($warningColor, 10%);
+$warningColorLightest: lighten($warningColor, 20%);
+$warningColorDark: darken($warningColor, 5%);
+$warningColorDarker: darken($warningColor, 10%);
+$warningColorDarkest: darken($warningColor, 40%);
+
+$dangerColor: #ff5454;
+$dangerColorText: #fff;
+$dangerColorLight: lighten($dangerColor, 5%);
+$dangerColorLighter: lighten($dangerColor, 10%);
+$dangerColorLightest: lighten($dangerColor, 20%);
+$dangerColorDark: darken($dangerColor, 5%);
+$dangerColorDarker: darken($dangerColor, 10%);
+$dangerColorDarkest: darken($dangerColor, 40%);
+
+$stripeColor: #f3f2ef;
+$stripeTextColor: #404040;
+$stripeTextHoverColor: lighten(#404040, 30%);
+$stripeAccentColor: darken($stripeColor, 20%);
+
 @font-face {
     font-family: 'Proxima Nova Light';
     src: url('fonts/proximanova-light-webfont.eot');
@@ -20,11 +79,7 @@
     font-weight: normal;
     font-style: normal;
 
-}
-
-$stripeColor: #f3f2ef;
-$stripeTextColor: #404040;
-$stripeAccentColor: darken($stripeColor, 20%);
+}	
 
 $footerColor: $stripeTextColor;
 $footerTextColor: #999;
@@ -146,6 +201,81 @@ p {
 
 		&:last-child {
 			border-right: none;
+		}
+	}
+}
+
+.panel-pricing {
+	text-align: center;
+
+	&.panel-success {
+		.glyphicon {
+			color: $successColor;
+		}
+
+		.panel-body {
+			h4 {
+				border-bottom: 1px solid $successColor;
+			}
+
+			h5 {
+				border-top: 1px solid $successColor;
+			}
+		}
+	}
+
+	&.panel-primary {
+		.glyphicon {
+			color: $primaryColor;
+		}
+
+		.panel-body {
+			h4 {
+				border-bottom: 1px solid $primaryColor;
+			}
+
+			h5 {
+				border-top: 1px solid $primaryColor;
+			}
+		}
+	}
+
+	&>.panel-heading {
+		&>.panel-title {
+			font-size: 24px;
+		}
+	}
+
+	.panel-body {
+		h4 {
+			font-size: 48px;
+			font-weight: normal;
+			font-family: $bodyText;
+			padding-bottom: 10px;
+			margin-bottom: 18px;
+
+			sup {
+				color: $defaultColorDarkest;
+				font-size: 24px;
+			}
+		}
+
+		h5 {
+			padding-top: 18px;
+			margin-top: 18px;
+			margin-bottom: 14px;
+		}
+
+		p {
+			.glyphicon {
+				padding-right: 10px;
+			}
+
+			font-size: 16px;
+
+			&.all {
+				font-size: 13px;
+			}
 		}
 	}
 }
