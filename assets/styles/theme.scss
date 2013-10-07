@@ -340,12 +340,10 @@ body {
 
 .navbar-inverse .navbar-nav > li > a {
   padding: 0px;
-  padding-bottom: 1px;
   margin: 20px 15px 19px 15px;
 
   &:hover {
-    padding-bottom: 0px;
-    border-bottom: 1px dotted $stripeTextColor;
+    color: $stripeTextHoverColor;
   }
 
 }

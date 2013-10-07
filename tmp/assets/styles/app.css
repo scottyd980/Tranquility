@@ -70,8 +70,15 @@ p.callout {
   border-bottom: 1px solid #ddd;
   padding-bottom: 10px;
   margin-bottom: 15px; }
+.section .section-header h2 {
+  color: #aaaaaa;
+  margin-bottom: 0; }
 .section.striped {
   background-color: #f3f2ef; }
+.section.faq p {
+  margin-bottom: 20px; }
+.section.faq p:last-child {
+  margin-bottom: 0; }
 
 .align-left {
   text-align: left; }
@@ -95,7 +102,8 @@ p.callout {
   border-right: none; }
 
 .panel-pricing {
-  text-align: center; }
+  text-align: center;
+  margin-bottom: 0; }
 .panel-pricing.panel-success .icon {
   color: #49bf67; }
 .panel-pricing.panel-success .panel-body h4 {

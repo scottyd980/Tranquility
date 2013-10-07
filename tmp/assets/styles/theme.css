@@ -143,11 +143,9 @@ body {
 
 .navbar-inverse .navbar-nav > li > a {
   padding: 0px;
-  padding-bottom: 1px;
   margin: 20px 15px 19px 15px; }
 .navbar-inverse .navbar-nav > li > a:hover {
-  padding-bottom: 0px;
-  border-bottom: 1px dotted #404040; }
+  color: #8c8c8c; }
 
 .navbar-static-top, .navbar-fixed-top, .navbar-fixed-bottom {
   border-radius: 0; }
