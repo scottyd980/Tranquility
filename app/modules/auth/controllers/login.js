@@ -32,7 +32,7 @@ Tranquility.AuthLoginController = Ember.Controller.extend({
             self.set('attemptedTransition', null);
           } else {
             // Redirect to 'index' by default.
-            self.transitionToRoute('index');
+            self.transitionToRoute('dashboard');
           }
         } else {
           self.set('errorMessage', response.message);

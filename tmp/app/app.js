@@ -52,6 +52,53 @@ Tranquility.AuthenticationRoute = Ember.Route.extend({
 
 (function() {
 
+Tranquility.TypeSupport = Ember.Mixin.create({
+  classTypePrefix: Ember.required(String),
+  classNameBindings: ['typeClass'],
+  type: 'default',
+  typeClass: (function() {
+    var pref, type;
+    type = this.get('type');
+    if (type == null) {
+      type = 'default';
+    }
+    pref = this.get('classTypePrefix');
+    return "" + pref + "-" + type;
+  }).property('type').cacheable()
+});
+
+})();
+
+(function() {
+
+Tranquility.IssuePanelComponent = Ember.Component.extend(Tranquility.TypeSupport, {
+	classNames: ['panel'],
+    classTypePrefix: ['panel'],
+    icon: (function () {
+    	var type = this.get('type');
+    	switch( type ) {
+    		case "default":
+    			return false;
+    		case "primary":
+    			return "icon-tasks";
+    		case "success": 
+    			return "icon-certificate"
+    		case "info":
+    			return "icon-cogs";
+    		case "warning":
+    			return "icon-cogs";
+    		case "danger":
+    			return "icon-bug";
+    		default:
+    			return false;
+    	}
+    }).property('type').cacheable()
+});
+
+})();
+
+(function() {
+
 Tranquility.Authenticator = Ember.Object.extend({
 
   // Load the current user if the cookies exist and is valid
@@ -227,6 +274,14 @@ Tranquility.ApplicationRoute = Ember.Route.extend({
 
 (function() {
 
+Tranquility.DashboardRoute = Tranquility.AuthenticatedRoute.extend({
+
+});
+
+})();
+
+(function() {
+
 Tranquility.AuthLoginController = Ember.Controller.extend({
     remember: true,
 
@@ -261,7 +316,7 @@ Tranquility.AuthLoginController = Ember.Controller.extend({
             self.set('attemptedTransition', null);
           } else {
             // Redirect to 'index' by default.
-            self.transitionToRoute('index');
+            self.transitionToRoute('dashboard');
           }
         } else {
           self.set('errorMessage', response.message);
@@ -391,6 +446,7 @@ Tranquility.IndexView = Ember.View.extend({
 Tranquility.Router.map(function() {
   this.route('about', { path: '/about' });
   this.route('pricing', { path: '/pricing' });
+  this.route('dashboard', { path: '/dashboard' });
   this.resource('auth', function() {
   	this.route('login', { path: '/login' });
   	this.route('logout', { path: '/logout' });

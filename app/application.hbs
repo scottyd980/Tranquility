@@ -9,7 +9,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#"><img src="../assets/img/logo2.png"/> Tranquility</a>
+      {{#if isAuthenticated}}
+        {{#link-to 'dashboard' class="navbar-brand"}}<img src="../assets/img/logo2.png"/> Tranquility{{/link-to}}
+      {{else}}
+        {{#link-to 'index' class="navbar-brand"}}<img src="../assets/img/logo2.png"/> Tranquility{{/link-to}}
+      {{/if}}
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
