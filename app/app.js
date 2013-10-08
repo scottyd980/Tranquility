@@ -37,7 +37,7 @@ Tranquility.AuthenticationRoute = Ember.Route.extend({
 
   beforeModel: function(transition) {
     if (Tranquility.AuthManager.isAuthenticated()) {
-      this.transitionTo('index');
+      this.transitionTo('dashboard');
     }
   }
   
