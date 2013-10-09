@@ -262,6 +262,17 @@ Tranquility.ApplicationRoute = Ember.Route.extend({
 		this._super();
 		Tranquility.AuthManager = Tranquility.Authenticator.create();
 	},
+
+	renderTemplate: function( controller, model ) {
+		var loggedIn = controller.get('isAuthenticated');
+
+		if( loggedIn ) {
+			this.render('userapplication');
+		} else {
+			this.render('guestapplication');
+		}
+	},
+
 	actions: {
 		logout: function() {
 			Tranquility.AuthManager.reset();
@@ -427,9 +438,27 @@ Tranquility.ApplicationController = Ember.Controller.extend({
 	isAuthenticated: function() {
 		return Tranquility.AuthManager.isAuthenticated()
 	}.property('Tranquility.AuthManager.sessionToken'),
+
 	currentPathDidChange: function() {
 	  window.scrollTo(0,0);
-	}.observes('currentPath')
+	}.observes('currentPath'),
+
+	menuToggled: false,
+
+	actions: {
+		toggleMenu: function() {
+
+			if( !this.get('menuToggled') ) {
+				$('body').addClass('cbp-spmenu-push-toright');
+				$('.cbp-spmenu-left').addClass('cbp-spmenu-open');
+				this.set('menuToggled', true);
+			} else {
+				$('body').removeClass('cbp-spmenu-push-toright');
+				$('.cbp-spmenu-left').removeClass('cbp-spmenu-open');
+				this.set('menuToggled', false);
+			}
+		}
+	}
 });
 
 })();

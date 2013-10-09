@@ -1,4 +1,39 @@
-Ember.TEMPLATES["application"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["components/issue-panel"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, hashTypes, hashContexts, escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = '', hashContexts, hashTypes;
+  data.buffer.push("<i ");
+  hashContexts = {'class': depth0};
+  hashTypes = {'class': "STRING"};
+  data.buffer.push(escapeExpression(helpers.bindAttr.call(depth0, {hash:{
+    'class': ("icon")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("></i>");
+  return buffer;
+  }
+
+  data.buffer.push("<div class=\"panel-heading\">\r\n	<h3 class=\"panel-title\">");
+  hashTypes = {};
+  hashContexts = {};
+  stack1 = helpers['if'].call(depth0, "icon", {hash:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "title", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("</h3>\r\n</div>\r\n<div class=\"panel-body\">\r\n	");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "yield", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("\r\n</div>");
+  return buffer;
+  
+});
+
+Ember.TEMPLATES["guestapplication"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', stack1, hashTypes, hashContexts, self=this, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
@@ -129,41 +164,6 @@ function program16(depth0,data) {
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "outlet", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push("\n\n<div class=\"push\"></div>\n</div>\n<footer>\n  <div class=\"align-center\">&copy; 2013 Tranquility</div>\n</footer>");
-  return buffer;
-  
-});
-
-Ember.TEMPLATES["components/issue-panel"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
-this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '', stack1, hashTypes, hashContexts, escapeExpression=this.escapeExpression, self=this;
-
-function program1(depth0,data) {
-  
-  var buffer = '', hashContexts, hashTypes;
-  data.buffer.push("<i ");
-  hashContexts = {'class': depth0};
-  hashTypes = {'class': "STRING"};
-  data.buffer.push(escapeExpression(helpers.bindAttr.call(depth0, {hash:{
-    'class': ("icon")
-  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push("></i>");
-  return buffer;
-  }
-
-  data.buffer.push("<div class=\"panel-heading\">\r\n	<h3 class=\"panel-title\">");
-  hashTypes = {};
-  hashContexts = {};
-  stack1 = helpers['if'].call(depth0, "icon", {hash:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
-  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  hashTypes = {};
-  hashContexts = {};
-  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "title", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push("</h3>\r\n</div>\r\n<div class=\"panel-body\">\r\n	");
-  hashTypes = {};
-  hashContexts = {};
-  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "yield", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push("\r\n</div>");
   return buffer;
   
 });
@@ -526,6 +526,29 @@ function program1(depth0,data) {
   stack2 = ((stack1 = helpers['link-to'] || depth0['link-to']),stack1 ? stack1.call(depth0, "auth.signup", options) : helperMissing.call(depth0, "link-to", "auth.signup", options));
   if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
   data.buffer.push("\n				</div>\n			</div>\n		</div>\n	  </div>\n	</div>\n</section>\n\n<section class=\"section faq\">\n	<div class=\"container\">\n	  <div class=\"row\">\n	  	<div class=\"col-lg-12\">\n	  		<h4>What can I use during the free trial?</h4>\n	  		<p>Once you pick a plan to test the free trial, you'll recieve exactly what's listed in the plan, free for the first two weeks. Nothing is different about the free trial and the paid account, so you can try out every last part of Tranquility for free. Once you reach the end of the free trial, you'll be prompted to enter your credit card to continue using the site. We'll make sure to remind you a few days in advance so there's no lapse in service.</p>\n	  		<h4>What do you mean by \"active\" projects?</h4>\n	  		<p>Each plan has a number of \"active\" projects included in the plan. An active project is a project that is currently being worked on. Once you complete a project, you can choose to archive it. This way you will keep all the data from the project, but no users will be able to contribute to it anymore, unless it is re-activated. While it's in an archived state, a project does not count towards your number of total active projects.</p>\n	  		<h4>What browsers do you support?</h4>\n	  		<p>We officially support all modern browsers, including current versions of Chrome, Safari, Opera, and Internet Explorer. Internet Explorer 9 and up is officially supported, although older versions may continue to work with Tranquility.</p>\n	  		<h4>What happens if I decide to cancel?</h4>\n	  		<p>If you cancel prior to the free trial being over, you're all set. We won't bother you, unless you come back to try us out again. If you've begun paying for our service, it's also just as easy to cancel. We'll pro-rate the monthly charge so you only have to pay for what you used, and there's no commitment, so there's no cancellation fees.</p>\n	  	</div>\n	  </div>\n	</div>\n</section>\n");
+  return buffer;
+  
+});
+
+Ember.TEMPLATES["userapplication"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', hashTypes, hashContexts, escapeExpression=this.escapeExpression;
+
+
+  data.buffer.push("<div class=\"wrapper\">\n  	\n	<a ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "toggleMenu", {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(">Menu</a>\n\n	<nav class=\"cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left\" id=\"cbp-spmenu-s1\">\n		<h3>Menu</h3>\n		<a href=\"#\">Celery seakale</a>\n		<a href=\"#\">Dulse daikon</a>\n		<a href=\"#\">Zucchini garlic</a>\n		<a href=\"#\">Catsear azuki bean</a>\n		<a href=\"#\">Dandelion bunya</a>\n		<a href=\"#\">Rutabaga</a>\n	</nav>\n\n	<div ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "toggleMenu", {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(" id=\"main\">\n  		");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "outlet", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("\n  	</div>\n\n  <div class=\"push\"></div>\n</div>\n<footer>\n  <div class=\"align-center\">&copy; 2013 Tranquility</div>\n</footer>");
   return buffer;
   
 });

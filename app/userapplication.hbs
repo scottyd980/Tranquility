@@ -1,0 +1,23 @@
+<div class="wrapper">
+  	
+	<a {{action 'toggleMenu'}}>Menu</a>
+
+	<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+		<h3>Menu</h3>
+		<a href="#">Celery seakale</a>
+		<a href="#">Dulse daikon</a>
+		<a href="#">Zucchini garlic</a>
+		<a href="#">Catsear azuki bean</a>
+		<a href="#">Dandelion bunya</a>
+		<a href="#">Rutabaga</a>
+	</nav>
+
+	<div {{action 'toggleMenu'}} id="main">
+  		{{outlet}}
+  	</div>
+
+  <div class="push"></div>
+</div>
+<footer>
+  <div class="align-center">&copy; 2013 Tranquility</div>
+</footer>
