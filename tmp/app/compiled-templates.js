@@ -533,18 +533,30 @@ function program1(depth0,data) {
 Ember.TEMPLATES["userapplication"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '', hashTypes, hashContexts, escapeExpression=this.escapeExpression;
+  var buffer = '', stack1, hashContexts, hashTypes, escapeExpression=this.escapeExpression, self=this;
 
+function program1(depth0,data) {
+  
+  
+  data.buffer.push("\n		<h3>Menu</h3>\n		<a href=\"#\">Celery seakale</a>\n		<a href=\"#\">Dulse daikon</a>\n		<a href=\"#\">Zucchini garlic</a>\n		<a href=\"#\">Catsear azuki bean</a>\n		<a href=\"#\">Dandelion bunya</a>\n		<a href=\"#\">Rutabaga</a>\n	");
+  }
 
   data.buffer.push("<div class=\"wrapper\">\n  	\n	<a ");
-  hashTypes = {};
-  hashContexts = {};
-  data.buffer.push(escapeExpression(helpers.action.call(depth0, "toggleMenu", {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push(">Menu</a>\n\n	<nav class=\"cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left\" id=\"cbp-spmenu-s1\">\n		<h3>Menu</h3>\n		<a href=\"#\">Celery seakale</a>\n		<a href=\"#\">Dulse daikon</a>\n		<a href=\"#\">Zucchini garlic</a>\n		<a href=\"#\">Catsear azuki bean</a>\n		<a href=\"#\">Dandelion bunya</a>\n		<a href=\"#\">Rutabaga</a>\n	</nav>\n\n	<div ");
-  hashTypes = {};
-  hashContexts = {};
-  data.buffer.push(escapeExpression(helpers.action.call(depth0, "toggleMenu", {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push(" id=\"main\">\n  		");
+  hashContexts = {'bubbles': depth0};
+  hashTypes = {'bubbles': "BOOLEAN"};
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "toggleMenu", {hash:{
+    'bubbles': (false)
+  },contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(">Menu</a>\n\n	");
+  hashContexts = {'tagName': depth0,'class': depth0,'classBinding': depth0};
+  hashTypes = {'tagName': "STRING",'class': "STRING",'classBinding': "STRING"};
+  stack1 = helpers.view.call(depth0, "Tranquility.SideMenuView", {hash:{
+    'tagName': ("nav"),
+    'class': ("cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left"),
+    'classBinding': ("menuToggled:cbp-spmenu-open")
+  },inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n\n	<div id=\"main\">\n  		");
   hashTypes = {};
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "outlet", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));

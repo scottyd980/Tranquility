@@ -9,18 +9,20 @@ Tranquility.ApplicationController = Ember.Controller.extend({
 
 	menuToggled: false,
 
+	pushBody: function() {
+		if (this.get('menuToggled')){
+	    	$('body').addClass('cbp-spmenu-push-toright');
+	    } else {
+	    	$('body').removeClass('cbp-spmenu-push-toright');
+	    }
+	},
+
 	actions: {
 		toggleMenu: function() {
 
-			if( !this.get('menuToggled') ) {
-				$('body').addClass('cbp-spmenu-push-toright');
-				$('.cbp-spmenu-left').addClass('cbp-spmenu-open');
-				this.set('menuToggled', true);
-			} else {
-				$('body').removeClass('cbp-spmenu-push-toright');
-				$('.cbp-spmenu-left').removeClass('cbp-spmenu-open');
-				this.set('menuToggled', false);
-			}
+			this.toggleProperty('menuToggled');
+			this.pushBody();
+
 		}
 	}
 });

@@ -1,0 +1,1 @@
+Tranquility.IndexRoute = Tranquility.AuthenticationRoute.extend();
