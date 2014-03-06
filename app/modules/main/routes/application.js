@@ -7,7 +7,6 @@ Tranquility.ApplicationRoute = Ember.Route.extend({
 	actions: {
 		logout: function() {
 			Tranquility.AuthManager.reset();
-			this.transitionTo('index');
 		}
 	}
 });

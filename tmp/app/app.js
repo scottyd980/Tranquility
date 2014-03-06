@@ -142,14 +142,15 @@ authenticate: function(token, userId, remember) {
 
   // Log out the user
 reset: function() {
-    Tranquility.__container__.lookup("route:application").transitionTo('index');
+   // Tranquility.__container__.lookup("route:application").transitionTo('index');
     Ember.run.sync();
     Ember.run.next(this, function(){
         this.set('sessionToken', null);
         $.ajaxSetup({
             headers: { 'token': null }
         });
-    });
+        Tranquility.__container__.lookup("route:application").transitionTo('index');
+    });  
 },
 
   // Ensure that when the sessionToken changes, we store the data in cookies in order for us to load
@@ -266,7 +267,6 @@ Tranquility.ApplicationRoute = Ember.Route.extend({
 	actions: {
 		logout: function() {
 			Tranquility.AuthManager.reset();
-			this.transitionTo('index');
 		}
 	}
 });

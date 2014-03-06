@@ -12,7 +12,11 @@ function program1(depth0,data) {
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "toggleMenu", {hash:{
     'bubbles': (false)
   },contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push(">Menu</a>\n\n		");
+  data.buffer.push(">Menu</a>\n\n		<a ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "logout", {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(" href=\"\">Logout</a>\n\n		");
   hashContexts = {'tagName': depth0,'class': depth0,'classBinding': depth0};
   hashTypes = {'tagName': "STRING",'class': "STRING",'classBinding': "STRING"};
   stack1 = helpers.view.call(depth0, "Tranquility.SideMenuView", {hash:{

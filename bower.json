@@ -2,7 +2,7 @@
   "name": "anthracite",
   "version": "0.1.0",
   "dependencies": {
-    "ember-shim": "1.0.0",
+    "ember-shim": "1.1.2",
     "ember-data": "http://builds.emberjs.com/beta/ember-data.min.js",
     "handlebars": "1.0.0",
     "bootstrap": "3.0.0",
